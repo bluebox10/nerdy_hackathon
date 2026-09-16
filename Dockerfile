@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir -r requirements-serve.txt
 # Copy application and web static files
 COPY serve/ ./serve/
 COPY web/ ./web/
+COPY submission/ ./submission/
 
 WORKDIR /app/serve
 
