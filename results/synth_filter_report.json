@@ -1,0 +1,15 @@
+{
+  "input_rows": 25048,
+  "removed_duplicate": 4,
+  "removed_structural": 499,
+  "round_trip_checked": 24545,
+  "round_trip_rejected": 7055,
+  "round_trip_reject_rate": 0.2874,
+  "kept": 17490,
+  "keep_rate_overall": 0.6983,
+  "keep_topk": 50,
+  "misconceptions_covered": 2387,
+  "median_rows_per_misconception": 9.0,
+  "filter_model": "models/biencoder_r1",
+  "out": "data/synth/filtered_p1.parquet"
+}

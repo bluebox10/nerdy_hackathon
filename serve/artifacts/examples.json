@@ -1,0 +1,938 @@
+[
+ {
+  "question_id": 1120,
+  "subject": "Expanding Single Brackets",
+  "construct": "Multiply a single term over a bracket where the term on the outside contains a letter and the inside contains a linear expression",
+  "question": "Multiply out the brackets: \\( m(2 m-7) \\)",
+  "correct": "\\( 2 m^{2}-7 m \\)",
+  "options": [
+   "\\( 2 m^{2}-7 \\)",
+   "\\( 3 m-7 m \\)",
+   "\\( 3 m-7 \\)",
+   "\\( 2 m^{2}-7 m \\)"
+  ],
+  "distractor": "\\( 3 m-7 \\)",
+  "gold_misconception_id": 2143,
+  "gold_misconception_name": "Adds instead of multiplying when expanding bracket"
+ },
+ {
+  "question_id": 1238,
+  "subject": "Writing Formula",
+  "construct": "Write a formula to describe a situation",
+  "question": "A taxi driver charges an initial \\( \u00a3 2.50 \\) plus \\( \u00a3 1.20 \\) per mile travelled. Which of the following expressions is correct for the total cost, \\( T \\), of a journey of \\( \\boldsymbol{m} \\) miles?",
+  "correct": "\\( \\mathrm{T}=1.20 \\mathrm{~m}+2.50 \\)",
+  "options": [
+   "\\( \\mathrm{T}=1.20(2.50+m) \\)",
+   "\\( \\mathrm{T}=3.70 \\mathrm{~m} \\)",
+   "\\( \\mathrm{T}=2.50 \\mathrm{~m}+1.20 \\)",
+   "\\( \\mathrm{T}=1.20 \\mathrm{~m}+2.50 \\)"
+  ],
+  "distractor": "\\( \\mathrm{T}=2.50 \\mathrm{~m}+1.20 \\)",
+  "gold_misconception_id": 727,
+  "gold_misconception_name": "Gets their constants and coefficients the wrong way around when writing a formula from a given situation"
+ },
+ {
+  "question_id": 1005,
+  "subject": "Converting between Fractions and Decimals",
+  "construct": "Convert fractions less than 1 to terminating decimals of 1 decimal place",
+  "question": "What is \\( \\frac{3}{5} \\) as a decimal?",
+  "correct": "None of these.",
+  "options": [
+   "None of these.",
+   "\\( 0.3 \\)",
+   "\\( 0.5 \\)",
+   "\\( 0.35 \\)"
+  ],
+  "distractor": "\\( 0.5 \\)",
+  "gold_misconception_id": 760,
+  "gold_misconception_name": "Converts a fraction to a decimal by using the denominator after the decimal point"
+ },
+ {
+  "question_id": 1749,
+  "subject": "Converting between Decimals and Percentages",
+  "construct": "Convert decimals less than 1 with 2 decimal place to percentages",
+  "question": "What is \\( 0.07 \\) written as a percentage?",
+  "correct": "\\( 7 \\% \\)",
+  "options": [
+   "\\( 7 \\% \\)",
+   "\\( 0.7 \\% \\)",
+   "\\( 70 \\% \\)",
+   "\\( 0.07 \\% \\)"
+  ],
+  "distractor": "\\( 0.07 \\% \\)",
+  "gold_misconception_id": 1965,
+  "gold_misconception_name": "Thinks you need to just add a % sign to a decimal to convert to a percentage"
+ },
+ {
+  "question_id": 1717,
+  "subject": "Linear Equations",
+  "construct": "Solve linear equations with the variable appearing on both sides, involving positive fractions",
+  "question": "Which of the following is a correct first step to solve this equation: \\(\\frac{5 r+6}{6 r}=7\\)",
+  "correct": "\\( 5 r+6=42 r \\)",
+  "options": [
+   "\\( \\frac{5}{6}+r=7 \\)",
+   "\\( 5 r+1=7 r \\)",
+   "\\( 5 r+6=42 r \\)",
+   "\\( \\frac{5 r}{6 r}=1 \\)"
+  ],
+  "distractor": "\\( \\frac{5 r}{6 r}=1 \\)",
+  "gold_misconception_id": 1566,
+  "gold_misconception_name": "Adds or subtracts from numerator first when solving an equation with a fraction"
+ },
+ {
+  "question_id": 840,
+  "subject": "Linear Equations",
+  "construct": "Solve two-step linear equations, with the variable on one side, with all positive integers",
+  "question": "Tom and Katie are discussing how to solve: \\( \\frac{8 x}{5}=40 \\)  Tom says a correct next line of working could be: \\( 8 x=8 \\) Katie says a correct next line of working could be: \\( \\frac{x}{5}=5 \\) Who is correct?",
+  "correct": "Only Katie",
+  "options": [
+   "Neither is correct",
+   "Only Tom",
+   "Only Katie"
+  ],
+  "distractor": "Only Tom",
+  "gold_misconception_id": 1214,
+  "gold_misconception_name": "When solving an equation, uses the same operation rather than the inverse."
+ },
+ {
+  "question_id": 685,
+  "subject": "Factors and Highest Common Factor",
+  "construct": "Identify common factors of two numbers",
+  "question": "A common factor of \\( 6 \\) and \\( 9 \\) is...",
+  "correct": "\\( 3 \\)",
+  "options": [
+   "\\( 6 \\)",
+   "\\( 18 \\)",
+   "\\( 3 \\)",
+   "\\( 9 \\)"
+  ],
+  "distractor": "\\( 6 \\)",
+  "gold_misconception_id": 1702,
+  "gold_misconception_name": "Does not know the 9 timestable"
+ },
+ {
+  "question_id": 259,
+  "subject": "Time",
+  "construct": "Convert from hours to minutes",
+  "question": "\\( 3 \\) hours is the same as ___________ minutes",
+  "correct": "\\( 180 \\)",
+  "options": [
+   "\\( 90 \\)",
+   "\\( 300 \\)",
+   "\\( 30 \\)",
+   "\\( 180 \\)"
+  ],
+  "distractor": "\\( 90 \\)",
+  "gold_misconception_id": 737,
+  "gold_misconception_name": "Thinks there are 30 minutes in a hour"
+ },
+ {
+  "question_id": 83,
+  "subject": "Rounding to Significant Figures",
+  "construct": "Round numbers greater than 1 to one significant figure",
+  "question": "Round this number to \\( 1 \\) significant figure: \\( 400099 \\)",
+  "correct": "\\( 400000 \\)",
+  "options": [
+   "\\( 400000 \\)",
+   "\\( 400100 \\)",
+   "\\( 500000 \\)"
+  ],
+  "distractor": "\\( 500000 \\)",
+  "gold_misconception_id": 1988,
+  "gold_misconception_name": "Rounds up instead of down"
+ },
+ {
+  "question_id": 1604,
+  "subject": "Squares, Cubes, etc",
+  "construct": "Calculate the square of a number",
+  "question": "What is the value of \\( 1^{2} \\) ?",
+  "correct": "\\( 1 \\)",
+  "options": [
+   "\\( 12 \\)",
+   "\\( 3 \\)",
+   "\\( 2 \\)",
+   "\\( 1 \\)"
+  ],
+  "distractor": "\\( 2 \\)",
+  "gold_misconception_id": 1072,
+  "gold_misconception_name": "Multiplies by the index"
+ },
+ {
+  "question_id": 266,
+  "subject": "Multiplying Fractions",
+  "construct": "Multiply mixed number fractions in the form: Fraction \u00d7 Integer",
+  "question": "\\( 1 \\frac{2}{3} \\times 2 \\) Which of the following is a correct way to write the answer to this calculation?",
+  "correct": "\\( 3 \\frac{1}{3} \\)",
+  "options": [
+   "\\( 2 \\frac{2}{3} \\)",
+   "\\( 2 \\frac{4}{6} \\)",
+   "\\( 3 \\frac{1}{3} \\)"
+  ],
+  "distractor": "\\( 2 \\frac{2}{3} \\)",
+  "gold_misconception_id": 1807,
+  "gold_misconception_name": "When multiplying mixed numbers, forgets to multiply the fraction"
+ },
+ {
+  "question_id": 1696,
+  "subject": "Time",
+  "construct": "Convert from years to days",
+  "question": "\\( 1 \\) leap year \\( =\\square \\) days",
+  "correct": "\\( 366 \\)",
+  "options": [
+   "\\( 364 \\)",
+   "\\( 365 \\)",
+   "\\( 366 \\)"
+  ],
+  "distractor": "\\( 364 \\)",
+  "gold_misconception_id": 1322,
+  "gold_misconception_name": "Does not know how many days are in a leap year"
+ },
+ {
+  "question_id": 1569,
+  "subject": "Substitution into Formula",
+  "construct": "Substitute numbers into a SUVAT equation to work out distance",
+  "question": "\\( s=u t+\\frac{1}{2} a t^{2} \\) What is the value of \\( s \\) when a=6  u=3  t=4",
+  "correct": "\\( 60 \\)",
+  "options": [
+   "\\( 60 \\)",
+   "\\( 156 \\)",
+   "\\( 576 \\)"
+  ],
+  "distractor": "\\( 156 \\)",
+  "gold_misconception_id": 452,
+  "gold_misconception_name": "When a variable in an expression has a power, thinks the power applies to the whole expression"
+ },
+ {
+  "question_id": 1397,
+  "subject": "Multiplying and Dividing with Decimals",
+  "construct": "Multiply a decimal by an integer",
+  "question": "\\( 0.4 \\times 5= \\)",
+  "correct": "\\( 2 \\)",
+  "options": [
+   "\\( 0.20 \\)",
+   "\\( 0.45 \\)",
+   "\\( 0.9 \\)",
+   "\\( 2 \\)"
+  ],
+  "distractor": "\\( 0.9 \\)",
+  "gold_misconception_id": 1416,
+  "gold_misconception_name": "Adds instead of multiplies"
+ },
+ {
+  "question_id": 847,
+  "subject": "Factorising into a Single Bracket",
+  "construct": "Factorise a single bracket containing a non-linear expression by taking out a single algebraic common factor (e.g. a)",
+  "question": "Factorise this expression, if possible: \\( p^{2}+4 p \\)",
+  "correct": "\\( p(p+4) \\)",
+  "options": [
+   "\\( p(p+4) \\)",
+   "\\( (p+2)(p+2) \\)",
+   "\\( (p-2)(p+2) \\)"
+  ],
+  "distractor": "\\( (p-2)(p+2) \\)",
+  "gold_misconception_id": 838,
+  "gold_misconception_name": "When factorising a quadratic without a non variable term, tries to double bracket factorise"
+ },
+ {
+  "question_id": 1191,
+  "subject": "Linear Equations",
+  "construct": "Solve linear equations with the variable appearing on both sides, with all positive integers",
+  "question": "Solve the equation: \\(20 t-5=5 t+10\\)",
+  "correct": "\\( t=1 \\)",
+  "options": [
+   "\\( t=1 \\)",
+   "\\( t=-1 \\)",
+   "\\( t=0 \\)",
+   "\\( t=\\frac{1}{5} \\)"
+  ],
+  "distractor": "\\( t=0 \\)",
+  "gold_misconception_id": 1924,
+  "gold_misconception_name": "Believes that a number divided by itself equals 0"
+ },
+ {
+  "question_id": 1756,
+  "subject": "Converting between Decimals and Percentages",
+  "construct": "Convert integer percentages with 2 digits to decimals",
+  "question": "How do you write \\( 23 \\% \\) as a decimal?",
+  "correct": "\\( 0.23 \\)",
+  "options": [
+   "\\( 0.23 \\)",
+   "\\( 23.00 \\)",
+   "\\( 2.3 \\)",
+   "\\( 23 \\)"
+  ],
+  "distractor": "\\( 2.3 \\)",
+  "gold_misconception_id": 619,
+  "gold_misconception_name": "Divided by 10 rather than 100"
+ },
+ {
+  "question_id": 699,
+  "subject": "Range and Interquartile Range from a List of Data",
+  "construct": "Calculate the range from a list of data",
+  "question": "Tom and Katie are discussing the \\( 5 \\) plants with these heights: \\[ 23 \\mathrm{~cm}, \\quad 17 \\mathrm{~cm}, \\quad 40 \\mathrm{~cm}, \\quad 25 \\mathrm{~cm}, \\quad 31 \\mathrm{~cm} \\]  Tom says if all the plants doubled in height, the range wouldn't change.  Katie says if all the plants grew by \\( 12 \\mathrm{~cm} \\) each, the range wouldn't change. Who do you agree with?",
+  "correct": "Only Katie",
+  "options": [
+   "Only Tom",
+   "Neither is correct",
+   "Only Katie",
+   "Both Tom and Katie"
+  ],
+  "distractor": "Only Tom",
+  "gold_misconception_id": 1287,
+  "gold_misconception_name": "Believes if you changed all values by the same proportion the range would not change"
+ },
+ {
+  "question_id": 924,
+  "subject": "Nets",
+  "construct": "Draw the net of a prism",
+  "question": "Which of the following collections of shapes would allow you to draw the net of a hexagonal prism?",
+  "correct": "\\( 2 \\) hexagons \\( 6 \\) rectangles",
+  "options": [
+   "\\( 2 \\) hexagons \\( 6 \\) triangles",
+   "\\( 2 \\) hexagons \\( 6 \\) rectangles",
+   "\\( 1 \\) hexagon \\( 6 \\) triangles",
+   "\\( 1 \\) hexagon \\( 6 \\) rectangles"
+  ],
+  "distractor": "\\( 1 \\) hexagon \\( 6 \\) triangles",
+  "gold_misconception_id": 1783,
+  "gold_misconception_name": "Confuses pyramid with prism"
+ },
+ {
+  "question_id": 1665,
+  "subject": "Linear Equations",
+  "construct": "Solve three or more step linear equations, with the variable on one side, with all positive integers",
+  "question": "Tom and Katie are discussing how to solve: \\(\\frac{5 x-1}{3}=2\\)  Tom says a correct next line of working could be: \\( 5 x-1=6 \\)  Katie says a correct next line of working could be: \\( \\frac{5 x}{3}=3 \\)  Who is correct?",
+  "correct": "Only Tom",
+  "options": [
+   "Only Katie",
+   "Both Tom and Katie",
+   "Only Tom",
+   "Neither is correct"
+  ],
+  "distractor": "Only Katie",
+  "gold_misconception_id": 1566,
+  "gold_misconception_name": "Adds or subtracts from numerator first when solving an equation with a fraction"
+ },
+ {
+  "question_id": 1640,
+  "subject": "Multiplying Fractions",
+  "construct": "Multiply proper fractions in the form: Fraction \u00d7 Integer",
+  "question": "\\( \\frac{1}{6} \\times 6=? \\)",
+  "correct": "\\( 1 \\)",
+  "options": [
+   "\\( 1 \\)",
+   "\\( \\frac{6}{36} \\)",
+   "\\( 6 \\)",
+   "\\( \\frac{1}{36} \\)"
+  ],
+  "distractor": "\\( \\frac{6}{36} \\)",
+  "gold_misconception_id": 1976,
+  "gold_misconception_name": "When multiplying a fraction by an integer, multiplies both numerator and denominator by the integer"
+ },
+ {
+  "question_id": 983,
+  "subject": "Substitution into Formula",
+  "construct": "Substitute positive integer values into expressions involving no powers or roots",
+  "question": "If \\( h=3 \\) what is the value of \\( 2+h \\) ?",
+  "correct": "\\( 5 \\)",
+  "options": [
+   "\\( 5 \\)",
+   "\\( 23 \\)",
+   "\\( -1 \\)",
+   "We cannot tell because \\( h \\) is a variable."
+  ],
+  "distractor": "\\( 23 \\)",
+  "gold_misconception_id": 1332,
+  "gold_misconception_name": "When adding, just writes the digit to the right of the number without considering place value"
+ },
+ {
+  "question_id": 28,
+  "subject": "Counting",
+  "construct": "Count backwards in steps of of something other than one",
+  "question": "George is counting backwards in steps of \\( 5 \\). He starts at the number \\( 19,103 \\) what is the next number he will say?",
+  "correct": "\\( 19,098 \\)",
+  "options": [
+   "\\( 19,102 \\)",
+   "\\( 19,099 \\)",
+   "\\( 19,098 \\)"
+  ],
+  "distractor": "\\( 19,102 \\)",
+  "gold_misconception_id": 878,
+  "gold_misconception_name": "Counts on by 1, when asked to count forward/backwards in a step other than 1"
+ },
+ {
+  "question_id": 1685,
+  "subject": "Converting Mixed Number and Improper Fractions",
+  "construct": "Express a division as a fraction",
+  "question": "Samia has \\( 12 \\) cakes to share between \\( 5 \\) people. What fraction of a cake does each person get?",
+  "correct": "\\( \\frac{12}{5} \\)",
+  "options": [
+   "\\( \\frac{12}{5} \\)",
+   "\\( \\frac{1}{12} \\)",
+   "\\( \\frac{1}{5} \\)",
+   "\\( \\frac{5}{12} \\)"
+  ],
+  "distractor": "\\( \\frac{5}{12} \\)",
+  "gold_misconception_id": 652,
+  "gold_misconception_name": "Mixes up the numerator and denominator when writing a division as a fraction"
+ },
+ {
+  "question_id": 89,
+  "subject": "Linear Sequences (nth term)",
+  "construct": "Generate a descending integer linear sequence from the nth term rule",
+  "question": "What is the first term of the sequence given by this rule: \\[ 1-5 n \\]",
+  "correct": "\\( -4 \\)",
+  "options": [
+   "\\( -5 \\)",
+   "\\( 1 \\)",
+   "\\( -4 \\)"
+  ],
+  "distractor": "\\( 1 \\)",
+  "gold_misconception_id": 1240,
+  "gold_misconception_name": "Thinks the first term of a sequence must be 1"
+ },
+ {
+  "question_id": 1317,
+  "subject": "Trial and Improvement and Iterative Methods",
+  "construct": "Select the correct answer to an iteration question to the required degree of accuracy",
+  "question": "\\( x_{n+1}=10-\\frac{1}{x_{n}} \\)  Using a starting value of \\( x_{1}=4 \\), what is the solution to \\( x=10-\\frac{1}{x} \\) to \\( 2 \\) decimal places?",
+  "correct": "\\( 9.90 \\)",
+  "options": [
+   "\\( 9.9 \\)",
+   "\\( 9.90 \\)",
+   "\\( 9.8989 \\ldots \\)",
+   "\\( 9.75 \\)"
+  ],
+  "distractor": "\\( 9.8989 \\ldots \\)",
+  "gold_misconception_id": 1248,
+  "gold_misconception_name": "Rounds to the wrong degree of accuracy (rounds too little)"
+ },
+ {
+  "question_id": 806,
+  "subject": "Solving Linear Inequalities",
+  "construct": "Solve one-step linear inequalities in one variable where the variable appears on one side of the equation",
+  "question": "Solve the inequality: \\(-\\frac{1}{3} y \\leq-6\\)",
+  "correct": "\\( y \\geq 18 \\)",
+  "options": [
+   "\\( y \\geq 2 \\)",
+   "\\( y \\geq 18 \\)",
+   "\\( y \\leq 18 \\)"
+  ],
+  "distractor": "\\( y \\leq 18 \\)",
+  "gold_misconception_id": 811,
+  "gold_misconception_name": "Believes they can multiply/divide through by a negative number without changing the direction of the inequality"
+ },
+ {
+  "question_id": 1657,
+  "subject": "Converting between Decimals and Percentages",
+  "construct": "Convert decimals less than 1 with 2 decimal place to percentages",
+  "question": "What is \\( 0.03 \\) written as a percentage?",
+  "correct": "\\( 3 \\% \\)",
+  "options": [
+   "\\( 0.03 \\% \\)",
+   "\\( 3 \\% \\)",
+   "\\( 30 \\% \\)",
+   "\\( 0.3 \\% \\)"
+  ],
+  "distractor": "\\( 30 \\% \\)",
+  "gold_misconception_id": 1673,
+  "gold_misconception_name": "Multiplied by 1000 instead of 100"
+ },
+ {
+  "question_id": 877,
+  "subject": "Length Units",
+  "construct": "Identify a unit of length",
+  "question": "Tom and Katie are discussing units of length Tom says miles is a unit of length Katie says \\( m l \\) is a unit of length Who is correct?",
+  "correct": "Only Tom",
+  "options": [
+   "Both Tom and Katie",
+   "Only Tom",
+   "Neither is correct",
+   "Only Katie"
+  ],
+  "distractor": "Only Katie",
+  "gold_misconception_id": 1210,
+  "gold_misconception_name": "Does not recognise millilitres as a unit of volume"
+ },
+ {
+  "question_id": 169,
+  "subject": "Writing Formula",
+  "construct": "Write a formula to describe a situation",
+  "question": "Sally the electrician charges a call-out fee of \\( \u00a3 40 \\) and then \\( \u00a3 15 \\) per hour that the job takes.  If a job takes \\( n \\) hours, which formula would help work out the cost \\( (C) \\) of hiring Sally?",
+  "correct": "\\( C=40+15 n \\)",
+  "options": [
+   "\\( C=15 n \\)",
+   "\\( C=40+15 n \\)",
+   "\\( C=40 n+15 \\)",
+   "\\( C=55 n \\)"
+  ],
+  "distractor": "\\( C=15 n \\)",
+  "gold_misconception_id": 641,
+  "gold_misconception_name": "Does not add on the constant in a worded substitution problem"
+ },
+ {
+  "question_id": 322,
+  "subject": "Multiplying and Dividing with Decimals",
+  "construct": "Multiply a decimal by an integer",
+  "question": "Work out: \\[ 0.3 \\times 12 \\]",
+  "correct": "\\( 3.6 \\)",
+  "options": [
+   "\\( 36 \\)",
+   "\\( 0.36 \\)",
+   "\\( 3.6 \\)",
+   "\\( 0.036 \\)"
+  ],
+  "distractor": "\\( 36 \\)",
+  "gold_misconception_id": 189,
+  "gold_misconception_name": "When multiplying decimals, ignores place value and just multiplies the digits"
+ },
+ {
+  "question_id": 1284,
+  "subject": "Multiplying and Dividing with Decimals",
+  "construct": "Divide a decimal by an integer",
+  "question": "\\( 0.1 \\div 4= \\)",
+  "correct": "\\( 0.025 \\)",
+  "options": [
+   "\\( 0.025 \\)",
+   "\\( 0.25 \\)",
+   "\\( 0.4 \\)"
+  ],
+  "distractor": "\\( 0.4 \\)",
+  "gold_misconception_id": 1074,
+  "gold_misconception_name": "Multiplies rather than divides"
+ },
+ {
+  "question_id": 439,
+  "subject": "Line Symmetry",
+  "construct": "Identify the order of rotational symmetry of a shape",
+  "question": "Tom and Katie are arguing about the order of rotational symmetry of quadrilaterals.  Tom says some quadrilaterals have an order of rotational symmetry of \\( 1 \\). Katie says some quadrilaterals have an order of rotational symmetry of \\( 3 \\). Who is correct?",
+  "correct": "Only Tom",
+  "options": [
+   "Only Tom",
+   "Both Tom and Katie",
+   "Only Katie"
+  ],
+  "distractor": "Only Katie",
+  "gold_misconception_id": 1007,
+  "gold_misconception_name": "Does not connect rotational symmetry to number of sides/vertices"
+ },
+ {
+  "question_id": 124,
+  "subject": "Adding and Subtracting Negative Numbers",
+  "construct": "Carry out subtraction problems involving two negative integers",
+  "question": "What number belongs in the box? \\( (-8)-(-5)= \\square\\)",
+  "correct": "\\( -3 \\)",
+  "options": [
+   "\\( -13 \\)",
+   "\\( -3 \\)",
+   "\\( 3 \\)",
+   "\\( 13 \\)"
+  ],
+  "distractor": "\\( -13 \\)",
+  "gold_misconception_id": 1282,
+  "gold_misconception_name": "When subtracting a negative thinks the answer must be negative "
+ },
+ {
+  "question_id": 287,
+  "subject": "Time",
+  "construct": "Identify a unit of time",
+  "question": "Tom and Katie are discussing units of time  Tom says days is a unit of time  Katie says \\( \\mathrm{km} / \\mathrm{h} \\) is a unit of time  Who is correct?",
+  "correct": "Only Tom",
+  "options": [
+   "Neither is correct",
+   "Both Tom and Katie",
+   "Only Katie",
+   "Only Tom"
+  ],
+  "distractor": "Only Katie",
+  "gold_misconception_id": 2507,
+  "gold_misconception_name": "Mistakes unit of speed for unit of time"
+ },
+ {
+  "question_id": 1542,
+  "subject": "Squares, Cubes, etc",
+  "construct": "Understand the notation for powers",
+  "question": "To calculate \\( 47^{2} \\) you need to do...",
+  "correct": "\\( 47 \\times 47 \\)",
+  "options": [
+   "\\( 47 \\div 2 \\)",
+   "\\( 47 \\times 47 \\)",
+   "\\( 47 \\times 2 \\)",
+   "\\( 47+2 \\)"
+  ],
+  "distractor": "\\( 47 \\div 2 \\)",
+  "gold_misconception_id": 960,
+  "gold_misconception_name": "Divides by the index"
+ },
+ {
+  "question_id": 672,
+  "subject": "Types, Naming and Estimating",
+  "construct": "Identify the number of degrees in fractions of a turn",
+  "question": "How many degrees are there in three-quarters of a turn?",
+  "correct": "\\( 270\\degree \\)",
+  "options": [
+   "\\( 75\\degree \\)",
+   "\\( 90\\degree \\)",
+   "\\( 270\\degree \\)"
+  ],
+  "distractor": "\\( 75\\degree \\)",
+  "gold_misconception_id": 2,
+  "gold_misconception_name": "Believes there are 100 degrees in a full turn"
+ },
+ {
+  "question_id": 36,
+  "subject": "Simplifying Expressions by Collecting Like Terms",
+  "construct": "Simplify algebraic expressions to maintain equivalence by collecting like terms involving just one linear variable",
+  "question": "Simplify the following by collecting like terms. \\[ d+d+d+d \\]",
+  "correct": "\\( 4 d \\)",
+  "options": [
+   "\\( 4 \\times d \\)",
+   "\\( d^{4} \\)",
+   "\\( 4 d \\)",
+   "\\( d 4 \\)"
+  ],
+  "distractor": "\\( 4 \\times d \\)",
+  "gold_misconception_id": 1680,
+  "gold_misconception_name": "Does not realize we can omit the multiplication symbol in algebraic expressions"
+ },
+ {
+  "question_id": 981,
+  "subject": "Converting between Decimals and Percentages",
+  "construct": "Convert integer percentages with 3 or more digits to decimals",
+  "question": "How do you write \\( 803 \\% \\) as a decimal?",
+  "correct": "\\( 8.03 \\)",
+  "options": [
+   "\\( 0.803 \\)",
+   "\\( 8.3 \\)",
+   "\\( 8.03 \\)"
+  ],
+  "distractor": "\\( 0.803 \\)",
+  "gold_misconception_id": 988,
+  "gold_misconception_name": "When converting a percentage to a decimal, just writes all the digits after a decimal point."
+ },
+ {
+  "question_id": 383,
+  "subject": "Substitution into Formula",
+  "construct": "Substitute positive integer values into expressions involving no powers or roots",
+  "question": "When \\( h=15 \\)  \\( \\frac{h}{3}= \\)",
+  "correct": "\\( 5 \\)",
+  "options": [
+   "\\( 5 \\)",
+   "\\( 12 \\)",
+   "\\( -5 \\)"
+  ],
+  "distractor": "\\( 12 \\)",
+  "gold_misconception_id": 2093,
+  "gold_misconception_name": "Thinks the fraction bar means subtract rather than divide"
+ },
+ {
+  "question_id": 250,
+  "subject": "Rounding to Significant Figures",
+  "construct": "Round numbers greater than 1 to two significant figures",
+  "question": "\\( 180.5672 \\)  What is the second significant figure in the number above?",
+  "correct": "\\( 8 \\)",
+  "options": [
+   "\\( 2 \\)",
+   "\\( 8 \\)",
+   "\\( 7 \\)",
+   "\\( 6 \\)"
+  ],
+  "distractor": "\\( 7 \\)",
+  "gold_misconception_id": 380,
+  "gold_misconception_name": "Does not understand the first significant value is the first non-zero digit number"
+ },
+ {
+  "question_id": 1050,
+  "subject": "Factorising into a Single Bracket",
+  "construct": "Factorise a single bracket containing a linear expression by taking out a single numeric common factor (e.g. 6)",
+  "question": "Factorise fully \\( 18 a-12 \\)",
+  "correct": "\\( 6(3 a-2) \\)",
+  "options": [
+   "\\( 6(3 a-2) \\)",
+   "\\( 18(a-6) \\)",
+   "\\( 2(9 a-6) \\)"
+  ],
+  "distractor": "\\( 2(9 a-6) \\)",
+  "gold_misconception_id": 1262,
+  "gold_misconception_name": "Believes that they can fully factorise an expression by taking out any common factor, not just the HCF"
+ },
+ {
+  "question_id": 533,
+  "subject": "Multiplying and Dividing Algebraic Fractions",
+  "construct": "Multiply algebraic fractions where the numerators and denominators are all single terms",
+  "question": "Write this as a single fraction as simply as possible:  \\( \\frac{5}{x} \\times \\frac{2 y}{x^{2}} \\)",
+  "correct": "\\( \\frac{10 y}{x^{3}} \\)",
+  "options": [
+   "\\( \\frac{10 y}{3 x} \\)",
+   "\\( \\frac{10 y}{x^{3}} \\)",
+   "\\( \\frac{5 x+10 y}{x^{2}} \\)"
+  ],
+  "distractor": "\\( \\frac{5 x+10 y}{x^{2}} \\)",
+  "gold_misconception_id": 1549,
+  "gold_misconception_name": "When asked to multiply fractions, uses the method for adding instead"
+ },
+ {
+  "question_id": 351,
+  "subject": "Squares, Cubes, etc",
+  "construct": "Calculate the square of a number",
+  "question": "\\( (16)^{2}=? \\)",
+  "correct": "\\( 256 \\)",
+  "options": [
+   "\\( 256 \\)",
+   "\\( 8 \\)",
+   "\\( 32 \\)"
+  ],
+  "distractor": "\\( 8 \\)",
+  "gold_misconception_id": 909,
+  "gold_misconception_name": "Mixes up squaring with dividing by 2"
+ },
+ {
+  "question_id": 563,
+  "subject": "Rearranging Formula and Equations",
+  "construct": "Rearrange formulae to change the subject where the subject appears once and two steps are needed",
+  "question": "Rearrange the following equation to make \\( r \\) the subject \\[ p=3 r-5 \\]",
+  "correct": "\\( r=\\frac{p+5}{3} \\)",
+  "options": [
+   "\\( r=\\frac{p+5}{3} \\)",
+   "\\( r=p+5 \\div 3 \\)",
+   "\\( r=\\frac{p-5}{3} \\)"
+  ],
+  "distractor": "\\( r=p+5 \\div 3 \\)",
+  "gold_misconception_id": 2586,
+  "gold_misconception_name": "Misunderstands order of operations in algebraic expressions"
+ },
+ {
+  "question_id": 198,
+  "subject": "Area Units",
+  "construct": "Convert from km\u00b2 to m\u00b2",
+  "question": "\\( 2 \\mathrm{~km}^{2} \\) is the same as _____ \\( m^{2} \\)",
+  "correct": "\\( 2000000 \\)",
+  "options": [
+   "\\( 2000000000 \\)",
+   "\\( 2000 \\)",
+   "\\( 20000 \\)",
+   "\\( 2000000 \\)"
+  ],
+  "distractor": "\\( 2000 \\)",
+  "gold_misconception_id": 486,
+  "gold_misconception_name": "Does not square the conversion factor when converting squared units"
+ },
+ {
+  "question_id": 145,
+  "subject": "Multiplying Fractions",
+  "construct": "Multiply mixed number fraction in the form: Fraction \u00d7 Fraction",
+  "question": "\\( 1 \\frac{1}{2} \\times 3 \\frac{2}{3}=\\bigstar\\frac{3}{6} \\) What should replace the star?",
+  "correct": "\\( 5 \\)",
+  "options": [
+   "\\( 4 \\)",
+   "\\( 5 \\)",
+   "\\( 3 \\)"
+  ],
+  "distractor": "\\( 3 \\)",
+  "gold_misconception_id": 1807,
+  "gold_misconception_name": "When multiplying mixed numbers, forgets to multiply the fraction"
+ },
+ {
+  "question_id": 1766,
+  "subject": "Solving Linear Inequalities",
+  "construct": "Solve linear inequalities in one variable that require three or more steps where the variable appears on one side of the equation",
+  "question": "Solve \\[ 36 \\leq 4(5 n-1) \\]",
+  "correct": "\\( 2 \\leq n \\)",
+  "options": [
+   "\\( \\frac{37}{20} \\leq n \\)",
+   "\\( n \\leq 2 \\)",
+   "\\( 2 \\leq n \\)"
+  ],
+  "distractor": "\\( n \\leq 2 \\)",
+  "gold_misconception_id": 38,
+  "gold_misconception_name": "Believes the sides of an inequality can be switched without changing the direction of the sign"
+ },
+ {
+  "question_id": 1437,
+  "subject": "Range and Interquartile Range from a List of Data",
+  "construct": "Calculate the range from a list of data",
+  "question": "What is the range of this set of data? \\[ 4 \\mathrm{~cm}, \\quad 22 \\mathrm{~cm}, \\quad 5 \\mathrm{~cm}, \\quad 7 \\mathrm{~cm} \\]",
+  "correct": "\\( 18 \\mathrm{~cm} \\)",
+  "options": [
+   "\\( 26 \\mathrm{~cm} \\)",
+   "\\( 18 \\mathrm{~cm} \\)",
+   "\\( 3 \\mathrm{~cm} \\)",
+   "\\( 22 \\mathrm{~cm} \\)"
+  ],
+  "distractor": "\\( 22 \\mathrm{~cm} \\)",
+  "gold_misconception_id": 1177,
+  "gold_misconception_name": "Identifies the biggest value for the range"
+ },
+ {
+  "question_id": 60,
+  "subject": "Converting Mixed Number and Improper Fractions",
+  "construct": "Simplify fractions that simplify to a unit fraction",
+  "question": "Write the following fraction in its simplest form: \\( 3 \\frac{7}{21} \\)",
+  "correct": "\\( 3 \\frac{1}{3} \\)",
+  "options": [
+   "\\( 3 \\frac{1}{3} \\)",
+   "Cannot be simplified",
+   "\\( 1 \\frac{1}{3} \\)"
+  ],
+  "distractor": "\\( 1 \\frac{1}{3} \\)",
+  "gold_misconception_id": 1104,
+  "gold_misconception_name": "Simplifies integers when simplifying a mixed number"
+ },
+ {
+  "question_id": 456,
+  "subject": "Linear Sequences (nth term)",
+  "construct": "Recognise an arithmetic sequence",
+  "question": "Tom and Katie are discussing arithmetic sequences.  Tom says this is an arithmetic sequence: \\( 5,8,11,14,17, \\ldots \\)  Katie says this is an arithmetic sequence: \\( 5,15,45,135,405, \\ldots \\)  Who is correct?",
+  "correct": "Only Tom",
+  "options": [
+   "Only Tom",
+   "Both Tom and Katie",
+   "Only Katie",
+   "Neither is correct"
+  ],
+  "distractor": "Only Katie",
+  "gold_misconception_id": 1198,
+  "gold_misconception_name": "Does not recognise that a linear sequence must increase or decrease by same amount"
+ },
+ {
+  "question_id": 243,
+  "subject": "Solving Linear Inequalities",
+  "construct": "Solve linear inequalities in one variable where the unknown appears on boths sides of the equation",
+  "question": "Solve \\[ 3 n+2 \\geq 4 n-5 \\]",
+  "correct": "\\( 7 \\geq n \\)",
+  "options": [
+   "\\( n \\geq 7 \\)",
+   "\\( 7 \\geq n \\)",
+   "\\( -3 \\geq n \\)",
+   "\\( 1 \\geq n \\)"
+  ],
+  "distractor": "\\( -3 \\geq n \\)",
+  "gold_misconception_id": 1214,
+  "gold_misconception_name": "When solving an equation, uses the same operation rather than the inverse."
+ },
+ {
+  "question_id": 426,
+  "subject": "Squares, Cubes, etc",
+  "construct": "Calculate the square of a number",
+  "question": "What is the value of \\( 4^{2} \\) ?",
+  "correct": "\\( 16 \\)",
+  "options": [
+   "\\( 16 \\)",
+   "\\( 6 \\)",
+   "\\( 4 \\)",
+   "\\( 8 \\)"
+  ],
+  "distractor": "\\( 8 \\)",
+  "gold_misconception_id": 2316,
+  "gold_misconception_name": "Mixes up squaring and multiplying by 2 or doubling"
+ },
+ {
+  "question_id": 1085,
+  "subject": "Multiplying and Dividing with Decimals",
+  "construct": "Divide two decimals with a different number of decimal places",
+  "question": "\\( 50.09 \\div 0.1= \\)",
+  "correct": "\\( 500.9 \\)",
+  "options": [
+   "\\( 50.009 \\)",
+   "\\( 500.9 \\)",
+   "\\( 5.009 \\)",
+   "\\( 500.09 \\)"
+  ],
+  "distractor": "\\( 50.009 \\)",
+  "gold_misconception_id": 539,
+  "gold_misconception_name": "Does not understand the value of zeros as placeholders"
+ },
+ {
+  "question_id": 1171,
+  "subject": "Converting Mixed Number and Improper Fractions",
+  "construct": "Convert from improper fractions to mixed number fractions",
+  "question": "Write \\( \\textbf{nineteen fifths} \\) as a mixed number fraction.",
+  "correct": "\\( 3 \\frac{4}{5} \\)",
+  "options": [
+   "\\( 19 \\frac{1}{5} \\)",
+   "\\( 3 \\frac{4}{5} \\)",
+   "\\( 4 \\frac{1}{5} \\)",
+   "\\( \\frac{19}{5} \\)"
+  ],
+  "distractor": "\\( 4 \\frac{1}{5} \\)",
+  "gold_misconception_id": 1142,
+  "gold_misconception_name": "When converting from an improper fraction to a mixed number, adds on the part left to make the whole, rather than subtracting it"
+ },
+ {
+  "question_id": 1271,
+  "subject": "Solving Linear Inequalities",
+  "construct": "Solve one-step linear inequalities in one variable where the variable appears on one side of the equation",
+  "question": "Jo and Paul are arguing about the solution to this inequality: \\(t+3>-0.3\\)  Jo says \\( t \\) could be \\( -3.4 \\)  Paul says \\( t \\) could be \\( 3.4 \\)  Who is correct?",
+  "correct": "Only Paul",
+  "options": [
+   "Both Jo and Paul",
+   "Only Paul",
+   "Only Jo"
+  ],
+  "distractor": "Only Jo",
+  "gold_misconception_id": 1880,
+  "gold_misconception_name": "Mixes up greater than and less than symbols"
+ },
+ {
+  "question_id": 1041,
+  "subject": "Time",
+  "construct": "Convert from seconds to hours",
+  "question": "How many hours is \\( 3600 \\) seconds?",
+  "correct": "\\( 1 \\)",
+  "options": [
+   "\\( 36 \\)",
+   "\\( 60 \\)",
+   "\\( 1 \\)",
+   "\\( 3.6 \\)"
+  ],
+  "distractor": "\\( 60 \\)",
+  "gold_misconception_id": 2149,
+  "gold_misconception_name": "Converted seconds to minutes instead of seconds to hours"
+ },
+ {
+  "question_id": 390,
+  "subject": "Percentages of an Amount",
+  "construct": "Calculate percentage of an amount mentally where the percent is a decimal",
+  "question": "What is \\( 5.5 \\% \\) of \\( 400 \\) ?",
+  "correct": "\\( 22 \\)",
+  "options": [
+   "\\( 5.5 \\)",
+   "\\( 22 \\)",
+   "\\( 220 \\)"
+  ],
+  "distractor": "\\( 5.5 \\)",
+  "gold_misconception_id": 2138,
+  "gold_misconception_name": "Does not understand a percentage can be applied to something not out of 100"
+ },
+ {
+  "question_id": 811,
+  "subject": "Linear Sequences (nth term)",
+  "construct": "Use the nth term rule for ascending integer linear sequences to find another term in the sequence",
+  "question": "If you know the first term of a linear sequence and you multiply it by \\( 10 \\), you get the \\( 10^{\\text {th }} \\) term of that sequence. Is this statement...",
+  "correct": "sometimes true",
+  "options": [
+   "always true",
+   "never true",
+   "sometimes true"
+  ],
+  "distractor": "always true",
+  "gold_misconception_id": 1582,
+  "gold_misconception_name": "Thinks terms in linear sequence are in direct proportion"
+ },
+ {
+  "question_id": 285,
+  "subject": "Rearranging Formula and Equations",
+  "construct": "Rearrange formulae to change the subject where the subject appears once and two steps are needed",
+  "question": "Rearrange the following equation to make \\( \\omega \\) the subject \\( F=r \\omega^{2} \\)",
+  "correct": "\\( \\omega=\\sqrt{\\frac{F}{r}} \\)",
+  "options": [
+   "\\( \\omega=\\sqrt{\\frac{F}{r}} \\)",
+   "\\( \\omega=\\frac{\\sqrt{F}}{r} \\)",
+   "\\( \\omega=r F^{2} \\)",
+   "\\( \\omega=\\sqrt{r F} \\)"
+  ],
+  "distractor": "\\( \\omega=r F^{2} \\)",
+  "gold_misconception_id": 1214,
+  "gold_misconception_name": "When solving an equation, uses the same operation rather than the inverse."
+ }
+]

@@ -1,0 +1,9 @@
+# What the production box actually installs. No torch, no CUDA, no sentence-transformers.
+fastapi
+uvicorn[standard]
+numpy
+onnxruntime
+transformers      # tokenizer only; no model weights are loaded through it
+tokenizers
+pydantic
+

@@ -1,0 +1,73 @@
+{
+ "student": "Priya",
+ "root_misconception_id": 220,
+ "root_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+ "topics": [
+  "Expanding Single Brackets",
+  "Factorising into a Single Bracket",
+  "Linear Equations",
+  "Multiplying and Dividing Algebraic Fractions"
+ ],
+ "steps": [
+  {
+   "subject": "Linear Equations",
+   "construct": "Solve two-step linear equations, with the variable on one side, with all positive integers",
+   "question": "Tom and Katie are arguing about a first step to solve this equation: \\( 4(m-1)=20 \\) Tom says you can write: \\( 4 m=21 \\) Katie says you can write: \\( m-1=5 \\) Who is correct?",
+   "correct": "Only Katie",
+   "student_answer": "Only Tom",
+   "gold_misconception_id": 220,
+   "gold_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+   "is_root_cause": true
+  },
+  {
+   "subject": "Expanding Single Brackets",
+   "construct": "Simplify algebraic expressions to maintain equivalence by collecting like terms involving non-linear variables",
+   "question": "\\( x(3 x-5)+6(2 x-3) \\equiv P x^{2}+Q x+R \\)  What is the value of \\( R \\) ?",
+   "correct": "\\( -18 \\)",
+   "student_answer": "\\( -3 \\)",
+   "gold_misconception_id": 220,
+   "gold_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+   "is_root_cause": true
+  },
+  {
+   "subject": "Factorising into a Single Bracket",
+   "construct": "Factorise a single bracket containing a non-linear expression by taking out a common factor involving numeric and algebraic components (e.g. 5a)",
+   "question": "When this expression is fully factorised, what is left inside the brackets? \\( 24 a b c^{2}-16 b^{2} c \\equiv 8 b c(\\square) \\)",
+   "correct": "\\( 3 a c-2 b \\)",
+   "student_answer": "\\( 3 a c \\)",
+   "gold_misconception_id": 220,
+   "gold_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+   "is_root_cause": true
+  },
+  {
+   "subject": "Multiplying and Dividing Algebraic Fractions",
+   "construct": "Multiply algebraic fractions where the numerators and denominators involve linear expressions",
+   "question": "Write this as a single fraction as simply as possible: \\( \\frac{5}{x-3} \\times \\frac{x^{2}}{2 y} \\)",
+   "correct": "\\( \\frac{5 x^{2}}{2 y(x-3)} \\)",
+   "student_answer": "\\( \\frac{5 x^{2}}{2 x y-3} \\)",
+   "gold_misconception_id": 220,
+   "gold_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+   "is_root_cause": true
+  },
+  {
+   "subject": "Expanding Single Brackets",
+   "construct": "Multiply a single term over a bracket where the term on the outside contains a letter and the inside contains a linear expression",
+   "question": "Multiply out the brackets: \\( m(m-2) \\)",
+   "correct": "\\( m^{2}-2 m \\)",
+   "student_answer": "\\( m^{2}-2 \\)",
+   "gold_misconception_id": 220,
+   "gold_misconception_name": "Only multiplies the first term in the expansion of a bracket",
+   "is_root_cause": true
+  },
+  {
+   "subject": "Substitution into Formula",
+   "construct": "Calculate speed where distance and time are in the appropriate units",
+   "question": "The formula for speed is \\( \\text { Speed }=\\frac{\\text { Distance }}{\\text { Time }} \\) A snail travels \\( 4 \\mathrm{~m} \\) in \\( 10 \\) hours. What was its speed?",
+   "correct": "\\( 0.4 \\) metres per hour",
+   "student_answer": "\\( 40 \\) metres per hour",
+   "gold_misconception_id": 509,
+   "gold_misconception_name": "Believes speed is distance multiplied by time",
+   "is_root_cause": false
+  }
+ ]
+}

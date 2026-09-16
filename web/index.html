@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WhyWrong — misconception-level diagnosis for adaptive practice</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+</head><body>
+
+<header><div class="hwrap">
+  <div class="brand">
+    <h1>Why<span>Wrong</span></h1>
+    <span class="tag">knows <em>why</em>, not just <em>what</em></span>
+  </div>
+  <nav>
+    <button data-v="student" class="on">Student</button>
+    <button data-v="tutor">Tutor view</button>
+    <button data-v="try">Try it</button>
+    <button data-v="benchmark">Benchmark</button>
+    <button data-v="how">How it's built</button>
+  </nav>
+</div></header>
+
+<main>
+
+<!-- ============ STUDENT ============ -->
+<section id="v-student" class="view on">
+  <h2>Practice that responds to the cause, not the symptom</h2>
+  <p class="sub">Answer the question. Get one wrong on purpose — watch what happens instead of “Not quite, try again!”</p>
+  <div class="grid g2">
+    <div>
+      <div class="card">
+        <div id="qbox"><span class="spinner"></span> loading problems…</div>
+      </div>
+    </div>
+    <div>
+      <div class="card" id="resultbox">
+        <h3>Diagnosis</h3>
+        <p class="muted">Pick an answer to see what the model says. A wrong answer is
+        matched against a 2,587-misconception taxonomy on this machine's CPU.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TUTOR ============ -->
+<section id="v-tutor" class="view">
+  <h2>Session intelligence for the tutor</h2>
+  <p class="sub">The real user isn't the student — it's the tutor who has 45 minutes and needs to know
+  where to aim them. This panel collapses a stream of individual errors into one root cause.</p>
+  <div class="card" style="margin-bottom:16px">
+    <div class="tutorbar">
+      <button class="primary" id="simbtn">▶ Simulate a live session</button>
+      <button class="ghost" id="resetbtn">Reset</button>
+      <span class="muted" id="simstat">Runs 6 real questions through the live endpoint.</span>
+    </div>
+  </div>
+  <div id="tutorbox"><div class="card"><p class="muted">No session yet — hit simulate.</p></div></div>
+</section>
+
+<!-- ============ TRY IT ============ -->
+<section id="v-try" class="view">
+  <h2>Try it on your own wrong answer</h2>
+  <p class="sub">Live endpoint. Type any maths question and a wrong answer — the round trip is
+  measured and shown below.</p>
+  <div class="grid g2">
+    <div class="card">
+      <div class="field"><label>Question</label>
+        <textarea id="t-q" rows="3">What is \( \frac{7}{12} - \frac{3}{12} \) ?</textarea></div>
+      <div class="grid g2" style="gap:11px">
+        <div class="field"><label>Correct answer</label><input id="t-c" value="\( \frac{4}{12} \)"></div>
+        <div class="field"><label>Student's answer</label><input id="t-a" value="\( \frac{4}{24} \)"></div>
+      </div>
+      <div class="grid g2" style="gap:11px">
+        <div class="field"><label>Subject (optional)</label><input id="t-s" value="Fractions"></div>
+        <div class="field"><label>Topic (optional)</label><input id="t-t" value="Subtracting fractions with the same denominator"></div>
+      </div>
+      <button class="primary" id="trybtn">Diagnose</button>
+    </div>
+    <div class="card" id="trybox"><h3>Result</h3><p class="muted">Nothing yet.</p></div>
+  </div>
+</section>
+
+<!-- ============ BENCHMARK ============ -->
+<section id="v-benchmark" class="view">
+  <h2>Benchmark</h2>
+  <p class="sub">Every number here was measured on the frozen held-out split described below.
+  Cells we could not measure say so rather than being estimated.</p>
+  <div id="benchbox"><span class="spinner"></span> loading…</div>
+</section>
+
+<!-- ============ HOW ============ -->
+<section id="v-how" class="view">
+  <h2>How it's built</h2>
+  <p class="sub">Train big on our own metal → distil small → serve on a CPU.</p>
+  <div id="howbox"></div>
+</section>
+
+</main>
+<footer>
+  WhyWrong · built for the Nerdy AI Hackathon Challenge ·
+  trained on the Eedi <em>Mining Misconceptions in Mathematics</em> research dataset ·
+  <span id="foot-health" class="muted"></span>
+</footer>
+<script src="/static/app.js"></script>
+</body></html>

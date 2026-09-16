@@ -1,0 +1,274 @@
+{
+  "generated_at": "2026-08-31 10:11 UTC",
+  "split_note": "Eedi 'Mining Misconceptions in Mathematics'. 4,370 labelled (question, wrong answer) pairs over a 2,587-misconception taxonomy. Frozen split grouped by question: 2,647 train / 841 val / 882 test. 1,498 misconceptions (58%) never appear in training, so 562 of 882 test queries have a gold label the model has never seen \u2014 that is the 'R@25 unseen' column.",
+  "systems": [
+    {
+      "name": "Off-the-shelf bge-small (no training)",
+      "params_M": 33,
+      "map25": 0.15267294228859063,
+      "recall25": 0.46598639455782315,
+      "recall25_unseen": 0.50355871886121,
+      "top1": 0.0782312925170068,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "GPU",
+      "shipped": false
+    },
+    {
+      "name": "Off-the-shelf bge-m3 (no training)",
+      "params_M": 568,
+      "map25": 0.15975099530156453,
+      "recall25": 0.47845804988662133,
+      "recall25_unseen": 0.5355871886120996,
+      "top1": 0.08616780045351474,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "GPU",
+      "shipped": false
+    },
+    {
+      "name": "Fine-tuned retriever (real data only)",
+      "params_M": 33,
+      "map25": 0.24593326582376204,
+      "recall25": 0.6428571428571429,
+      "recall25_unseen": 0.6761565836298933,
+      "top1": 0.1417233560090703,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "1x A100",
+      "shipped": false
+    },
+    {
+      "name": "+ synthetic long-tail data",
+      "params_M": 33,
+      "map25": 0.22592286151828161,
+      "recall25": 0.6587301587301587,
+      "recall25_unseen": 0.7241992882562278,
+      "top1": 0.10770975056689343,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "1x A100",
+      "shipped": false
+    },
+    {
+      "name": "+ hard-negative mining",
+      "params_M": 33,
+      "map25": 0.22928435727947524,
+      "recall25": 0.6383219954648526,
+      "recall25_unseen": 0.7099644128113879,
+      "top1": 0.11678004535147392,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "1x A100",
+      "shipped": false
+    },
+    {
+      "name": "Qwen2.5-7B LoRA reranker (teacher)",
+      "params_M": 7620,
+      "map25": 0.361499593068422,
+      "recall25": 0.6621315192743764,
+      "recall25_unseen": 0.7117437722419929,
+      "top1": 0.23696145124716553,
+      "p50_ms": null,
+      "cost_per_1k_usd": null,
+      "runs_on": "1x A100",
+      "shipped": false
+    },
+    {
+      "name": "Frontier API (few-shot)",
+      "params_M": null,
+      "map25": null,
+      "recall25": null,
+      "recall25_unseen": null,
+      "top1": null,
+      "p50_ms": null,
+      "cost_per_1k_usd": 0.5769,
+      "runs_on": "someone's GPU",
+      "shipped": false
+    },
+    {
+      "name": "WhyWrong \u2014 shipped (INT8 ONNX)",
+      "params_M": 55,
+      "map25": 0.2610212906811455,
+      "recall25": 0.6496598639455783,
+      "recall25_unseen": 0.6957295373665481,
+      "top1": 0.1360544217687075,
+      "p50_ms": 1047.21,
+      "cost_per_1k_usd": 0.00218,
+      "runs_on": "1 CPU core",
+      "shipped": true
+    }
+  ],
+  "headline": [
+    {
+      "key": "MAP@25, held-out",
+      "value": "0.261",
+      "detail": "vs 0.153 off-the-shelf",
+      "color": "var(--good)"
+    },
+    {
+      "key": "p50 latency",
+      "value": "1047.21 ms",
+      "detail": "one CPU core, no GPU",
+      "color": "var(--accent)"
+    },
+    {
+      "key": "cheaper per 1k",
+      "value": "264x",
+      "detail": "vs Claude Haiku 4.5 list price",
+      "color": "var(--warn)"
+    }
+  ],
+  "latency": {
+    "n": 200,
+    "p50": 1047.21,
+    "p90": 1636.5,
+    "p95": 1854.75,
+    "p99": 2319.81,
+    "mean": 1126.07,
+    "min": 544.97,
+    "max": 2332.32,
+    "breakdown_median": {
+      "embed_ms": 64.44,
+      "search_ms": 0.38,
+      "rerank_ms": 985.56,
+      "lookup_ms": 0.24
+    },
+    "curve": [
+      {
+        "rerank_k": 0,
+        "threads": 1,
+        "p50": 57.3,
+        "p90": 141.4
+      },
+      {
+        "rerank_k": 5,
+        "threads": 1,
+        "p50": 239.5,
+        "p90": 536.4
+      },
+      {
+        "rerank_k": 10,
+        "threads": 1,
+        "p50": 426.4,
+        "p90": 932.9
+      },
+      {
+        "rerank_k": 25,
+        "threads": 1,
+        "p50": 1007.5,
+        "p90": 2183.0
+      },
+      {
+        "rerank_k": 0,
+        "threads": 2,
+        "p50": 36.7,
+        "p90": 85.6
+      },
+      {
+        "rerank_k": 5,
+        "threads": 2,
+        "p50": 137.0,
+        "p90": 293.7
+      },
+      {
+        "rerank_k": 10,
+        "threads": 2,
+        "p50": 233.4,
+        "p90": 496.8
+      },
+      {
+        "rerank_k": 25,
+        "threads": 2,
+        "p50": 531.0,
+        "p90": 1132.1
+      },
+      {
+        "rerank_k": 0,
+        "threads": 4,
+        "p50": 23.5,
+        "p90": 50.7
+      },
+      {
+        "rerank_k": 5,
+        "threads": 4,
+        "p50": 80.4,
+        "p90": 165.8
+      },
+      {
+        "rerank_k": 10,
+        "threads": 4,
+        "p50": 133.9,
+        "p90": 288.9
+      },
+      {
+        "rerank_k": 25,
+        "threads": 4,
+        "p50": 307.5,
+        "p90": 613.8
+      }
+    ],
+    "accuracy_curve": [
+      {
+        "rerank_k": 0,
+        "map25": 0.2598391014419337,
+        "recall25": 0.6496598639455783,
+        "top1": 0.15532879818594103,
+        "map25_unseen": 0.27689352474069084
+      },
+      {
+        "rerank_k": 5,
+        "map25": 0.25851635011918234,
+        "recall25": 0.6496598639455783,
+        "top1": 0.1473922902494331,
+        "map25_unseen": 0.27689352474069084
+      },
+      {
+        "rerank_k": 10,
+        "map25": 0.26223760052410616,
+        "recall25": 0.6496598639455783,
+        "top1": 0.14625850340136054,
+        "map25_unseen": 0.28668776865415185
+      },
+      {
+        "rerank_k": 25,
+        "map25": 0.2610212906811455,
+        "recall25": 0.6496598639455783,
+        "top1": 0.1360544217687075,
+        "map25_unseen": 0.2817104025535043
+      }
+    ],
+    "n_cpu_cores_on_box": 96,
+    "load_average_1m": 9.63,
+    "rss_mb": 410.2,
+    "cold_start_s": 0.304
+  },
+  "cost": {
+    "assumption": "1,000,000 diagnoses/month. Ours: measured p50 1047.21 ms of one vCPU at $0.0075/vCPU-hour. Frontier: prompt length measured on this exact task (537 input + 8 output tokens per diagnosis) priced at Anthropic's published list rates. Frontier accuracy and latency were NOT measured -- no API key.",
+    "rows": [
+      {
+        "name": "Frontier API \u2014 Claude Sonnet 5",
+        "per_1k": "$1.15",
+        "monthly": "$1,153.90",
+        "basis": "measured tokens x published list price",
+        "shipped": false
+      },
+      {
+        "name": "Frontier API \u2014 Claude Haiku 4.5",
+        "per_1k": "$0.58",
+        "monthly": "$576.90",
+        "basis": "measured tokens x published list price",
+        "shipped": false
+      },
+      {
+        "name": "WhyWrong (shipped, 1 CPU core)",
+        "per_1k": "$0.00218",
+        "monthly": "$2.18",
+        "basis": "measured latency x commodity vCPU price",
+        "shipped": true
+      }
+    ]
+  },
+  "bundle_mb": 66.6,
+  "footnote": "Every filled cell was measured on the frozen test split above; blank cells say 'not measured' rather than being estimated. The shipped row is the INT8 ONNX artifact this site serves, measured through the same code path as your requests \u2014 not the fp32 training checkpoint."
+}

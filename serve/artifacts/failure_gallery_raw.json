@@ -1,0 +1,122 @@
+[
+  {
+    "subject": "Adding and Subtracting Negative Numbers",
+    "construct": "Carry out missing number subtraction problems involving negative integers",
+    "question": "![Number line with -12 and -7 marked. Starting at -12, follow an arrow pointing to the right labelled +10. Then there is an arrow labelled b pointing to the left, which ends at -7 on the number line.]() What is the value of \\( b \\) ?",
+    "student_answer": "\\( -6 \\)",
+    "correct": "\\( -5 \\)",
+    "gold_name": "Counts the starting number when counting backwards",
+    "pred_name": "When subtracting a negative number, subtracts the absolute value rather than adding it",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Substitution into Formula",
+    "construct": "Calculate speed where distance and time are in the appropriate units",
+    "question": "The formula for speed is \\( \\text { Speed }=\\frac{\\text { Distance }}{\\text { Time }} \\) A snail travels \\( 4 \\mathrm{~m} \\) in \\( 10 \\) hours. What was its speed?",
+    "student_answer": "\\( 2.5 \\) metres per hour",
+    "correct": "\\( 0.4 \\) metres per hour",
+    "gold_name": "Believes division is commutative ",
+    "pred_name": "When substituting into an algebraic term, believes they can disregard the coefficient",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Simplifying Expressions by Collecting Like Terms",
+    "construct": "Simplify algebraic expressions to maintain equivalence by collecting like terms involving just one linear variable",
+    "question": "Simplify the following by collecting like terms. \\[ d+d+d+d \\]",
+    "student_answer": "\\( 4 \\times d \\)",
+    "correct": "\\( 4 d \\)",
+    "gold_name": "Does not realize we can omit the multiplication symbol in algebraic expressions",
+    "pred_name": "Confuses collecting like terms with multiplication",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Ordering Fractions",
+    "construct": "Read a fraction on a scale where the required number is marked by a dash between two numbers",
+    "question": "What fraction should replace the star? ![A number line marked with 1/4, 2/4, 3/4, 4/4, 5/4. The star is halfway between 2/4 and 3/4.]()",
+    "student_answer": "None of these",
+    "correct": "\\( \\frac{5}{8} \\)",
+    "gold_name": "Does not realise you can use equivalent fractions to break fractions up into smaller divisions",
+    "pred_name": "Cannot identify a fraction on a number line",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Linear Equations",
+    "construct": "Solve one-step linear equations requiring multiplication or division, involving positive decimals",
+    "question": "Solve the equation: \\[ 0.45=0.3 p \\]",
+    "student_answer": "\\( p=\\frac{2}{3} \\)",
+    "correct": "\\( p=1.5 \\)",
+    "gold_name": "Believes division is commutative ",
+    "pred_name": "Thinks 0.3 = 1/3",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Percentages of an Amount",
+    "construct": "Calculate percentage of an amount using a calculator where the percent is an integer",
+    "question": "What should replace the star? ![A percentage number line representing the value 630 with a star above the 84% mark]() Use your calculator, if needed, and give your answer to \\( 1 \\) decimal place.",
+    "student_answer": "\\( 750 \\)",
+    "correct": "\\( 529.2 \\)",
+    "gold_name": "Thinks when finding a percentage you divide by the percentage being asked",
+    "pred_name": "Does not understand how to find percentages of an amount",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Time Series and Line Graphs",
+    "construct": "Interpret continuous data using a line graph",
+    "question": "![A line graph with title \"Height of rocket\".  The x-axis is titled \"Time in seconds\" and the scale is labelled from 0 to 90 seconds in steps of 10 seconds. The y-axis is titled \"Height in metres\" and the scale is labelled from 0 to 60 in steps of 10 metres. The following points are plotted and joined together: (0, 0), (10, 10), (20, 30),(30, 40), (40, 50), (60, 60). ]() How many metres did the ro",
+    "student_answer": "\\( 85 \\)",
+    "correct": "\\( 25 \\)",
+    "gold_name": "Adds instead of subtracts when asked to find the difference",
+    "pred_name": "Reads one point on a time series graph instead of all the values from a given time period",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Linear Equations",
+    "construct": "Solve linear equations with the variable appearing on both sides, with all positive integers",
+    "question": "Tom and Katie are arguing about a first step to solve this equation: \\(4 v+1=9 v-3\\)  Tom says you can write: \\( 5 v+1=-3 \\)  Katie says you can write: \\( 4 v+4=9 v \\)  Who is correct?",
+    "student_answer": "Only Tom",
+    "correct": "Only Katie",
+    "gold_name": "Subtracts the smallest digit from the largest digit",
+    "pred_name": "Believes that if there are two unknowns in an equation, all integers must be possible solutions",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Basic Angle Facts (straight line, opposite, around a point, etc)",
+    "construct": "Find missing angles using vertically opposite angles",
+    "question": "What is the size of angle \\( p \\) ? ![3 intersecting lines. Towards the top of the image two of the lines intersect and at this point there are two marked angles, 138 degrees and 42 degrees. The angle opposite the 42 degree angle is marked p]()",
+    "student_answer": "\\( 53^{\\circ} \\)",
+    "correct": "\\( 42^{\\circ} \\)",
+    "gold_name": "Mistakes lines as parallel",
+    "pred_name": "Confuses vertically opposite angles and angles around a point",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  },
+  {
+    "subject": "Substitution into Formula",
+    "construct": "Substitute positive integer values into expressions involving no powers or roots",
+    "question": "When \\( h=10 \\) \\( \\frac{h}{2}= \\)",
+    "student_answer": "\\( 8 \\)",
+    "correct": "\\( 5 \\)",
+    "gold_name": "Thinks the fraction bar means subtract rather than divide",
+    "pred_name": "When substituting into an algebraic term, replaces variables with numbers without multiplying.",
+    "gold_rank": null,
+    "category": "",
+    "note": ""
+  }
+]

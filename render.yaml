@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: whywrong
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    healthCheckPath: /api/health
+    envVars:
+      - key: PORT
+        value: 7860
+      - key: WW_RERANK_K
+        value: 25
+      - key: WW_THREADS
+        value: 1

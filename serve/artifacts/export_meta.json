@@ -1,0 +1,23 @@
+{
+  "exports": [
+    {
+      "kind": "embed",
+      "src": "models/biencoder_r3_rr6",
+      "fp32_mb": 133.0,
+      "int8_mb": 34.0
+    },
+    {
+      "kind": "rank",
+      "src": "models/student_ce",
+      "fp32_mb": 91.0,
+      "int8_mb": 23.1
+    }
+  ],
+  "index": {
+    "n": 2587,
+    "dim": 384,
+    "bytes": 3973632,
+    "mb": 3.97
+  },
+  "int8_parity_cosine_vs_fp32": 0.94603
+}

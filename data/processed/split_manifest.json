@@ -1,0 +1,13 @@
+{
+  "source": "cdtmc/eedi-ir (HF mirror of Eedi 'Mining Misconceptions in Mathematics', NeurIPS 2024)",
+  "n_misconceptions": 2587,
+  "n_queries": 4370,
+  "n_train": 2647,
+  "n_val": 841,
+  "n_test": 882,
+  "n_unique_misconceptions_in_train": 1089,
+  "n_misconceptions_never_in_train": 1498,
+  "test_unseen_queries": 562,
+  "val_unseen_queries": 452,
+  "split_rule": "fold 0 = test, fold 1 = val, folds 2-4 = train; grouped by question_id"
+}

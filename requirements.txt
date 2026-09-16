@@ -1,0 +1,21 @@
+# Training + evaluation environment (Python 3.11). The SERVING box needs far less --
+# see requirements-serve.txt: no torch, no CUDA, no sentence-transformers.
+accelerate==1.14.0
+datasets==5.0.1
+fastapi==0.141.1
+huggingface-hub==0.36.2
+matplotlib==3.11.1
+numpy==2.4.6
+onnx==1.22.0
+onnxruntime==1.29.0
+optimum==2.1.0
+pandas==3.0.5
+peft==0.20.0
+pyarrow==25.0.1
+pydantic==2.13.5
+scikit-learn==1.9.0
+sentence-transformers==5.7.0
+torch==2.6.0+cu124
+tqdm==4.70.0
+transformers==4.57.6
+uvicorn==0.52.4

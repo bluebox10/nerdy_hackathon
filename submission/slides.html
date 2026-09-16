@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WhyWrong — Presentation Deck (Nerdy AI Hackathon)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #0b0d12; --panel: #151925; --panel2: #1b2030; --line: #252b3d;
+  --ink: #e8ecf5; --ink2: #a3adc4; --ink3: #6b7690;
+  --accent: #5b8cff; --accent2: #7c5cff; --good: #3ddc97; --warn: #ffb545; --bad: #ff5c7a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif;
+  height: 100vh; overflow: hidden; display: flex; flex-direction: column;
+}
+header {
+  padding: 18px 32px; border-bottom: 1px solid var(--line); display: flex;
+  align-items: center; justify-content: space-between; background: rgba(14,17,24,0.8);
+  backdrop-filter: blur(10px);
+}
+.brand { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+.brand span { color: var(--accent); }
+.badge {
+  background: rgba(91,140,255,0.15); color: var(--accent); border: 1px solid rgba(91,140,255,0.3);
+  padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.slide-container {
+  flex: 1; display: flex; align-items: center; justify-content: center; padding: 30px;
+}
+.slide {
+  display: none; width: 100%; max-width: 1080px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 20px; padding: 48px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: fade 0.3s ease;
+}
+.slide.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 12px; }
+.sub { font-size: 16px; color: var(--ink2); margin-bottom: 32px; line-height: 1.5; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 24px; }
+.card.highlight { border-color: rgba(91,140,255,0.4); background: linear-gradient(145deg, rgba(91,140,255,0.1), rgba(124,92,255,0.05)); }
+.card h3 { font-size: 15px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--ink3); margin-bottom: 14px; font-weight: 700; }
+.stat-val { font-size: 40px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; color: var(--accent); margin-bottom: 6px; }
+.stat-label { font-size: 13px; color: var(--ink2); }
+.pill { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; font-family: 'IBM Plex Mono', monospace; }
+.pill.good { background: rgba(61,220,151,0.15); color: var(--good); }
+.pill.warn { background: rgba(255,181,69,0.15); color: var(--warn); }
+.pill.bad { background: rgba(255,92,122,0.15); color: var(--bad); }
+footer {
+  padding: 16px 32px; border-top: 1px solid var(--line); display: flex;
+  align-items: center; justify-content: space-between; background: var(--bg);
+}
+.nav-btn {
+  background: var(--panel2); border: 1px solid var(--line); color: var(--ink);
+  padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: 0.15s;
+}
+.nav-btn:hover { background: var(--line); }
+.nav-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Why<span>Wrong</span></div>
+  <span class="badge">Nerdy AI Hackathon Challenge · Demo Presentation</span>
+  <div id="slide-num" style="color:var(--ink3); font-size:13px; font-weight:600;">1 / 5</div>
+</header>
+
+<div class="slide-container">
+
+  <!-- SLIDE 1 -->
+  <div class="slide active" id="s1">
+    <h2>Every AI tutor says you're wrong.<br>WhyWrong tells you <span style="color:var(--accent)">exactly why</span>.</h2>
+    <p class="sub">Detecting wrongness is easy. Diagnosing the underlying misconception is what transforms practice.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Generic AI Tutor</h3>
+        <p style="font-size:15px; margin-bottom:12px;">Student submits: <code class="mono">7/12 − 3/12 = 4/24</code></p>
+        <p style="color:var(--bad); font-weight:600; margin-bottom:8px;">❌ "That's not quite right, try again!"</p>
+        <p style="font-size:13.5px; color:var(--ink2);">The student repeats the same broken rule, becomes frustrated, and disengages.</p>
+      </div>
+      <div class="card highlight">
+        <h3>WhyWrong Engine</h3>
+        <p style="font-size:15px; margin-bottom:12px;">Immediate diagnosis in <span class="pill good">380 ms</span> on <span class="pill">1 CPU core</span></p>
+        <p style="color:var(--good); font-weight:600; margin-bottom:8px;">🎯 #172: Subtracts numerators AND denominators</p>
+        <p style="font-size:13.5px; color:var(--ink2);">Returns a 3-rung Socratic ladder whose first step is a clarifying question, not a spoiled answer.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" id="s2">
+    <h2>Three Surfaces, One Diagnostic Engine</h2>
+    <p class="sub">Tailored intelligence for both student self-learning and live 1-on-1 tutor instruction.</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>1. Student Practice</h3>
+        <p style="font-size:14px; color:var(--ink2); margin-bottom:12px;">Immediate diagnosis upon error. Socratic hint ladder guides them without giving away the solution.</p>
+        <span class="pill good">Confidence Scored</span>
+      </div>
+      <div class="card highlight">
+        <h3>2. Tutor Session Intelligence</h3>
+        <p style="font-size:14px; color:var(--ink2); margin-bottom:12px;">Collapses 6 distinct errors across 4 topics into <strong>one root cause</strong>, with a recommended opening question and check probes.</p>
+        <span class="pill warn">Live Root-Cause Alert</span>
+      </div>
+      <div class="card">
+        <h3>3. Adaptive Sequencing</h3>
+        <p style="font-size:14px; color:var(--ink2); margin-bottom:12px;">Selects the next practice problem to specifically test whether that exact broken rule was cleared.</p>
+        <span class="pill">Targeted Probing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" id="s3">
+    <h2>The Architecture: The Finite Taxonomy Bet</h2>
+    <p class="sub">Heavy GPU training done offline once. Production is a fast, cheap CPU lookup.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Offline Pipeline (Our A100s — Run Once)</h3>
+        <ul style="font-size:13.5px; color:var(--ink2); line-height:1.7; padding-left:18px;">
+          <li><strong>Synthetic Augmentation:</strong> Qwen2.5-7B generated 17,490 questions for 1,498 zero-shot misconceptions.</li>
+          <li><strong>Retriever Fine-Tuning:</strong> BGE-small (33M) with hard-negative mining.</li>
+          <li><strong>Teacher &amp; Distillation:</strong> 7B LoRA teacher &rarr; distilled into 22M MiniLM.</li>
+          <li><strong>Explanation Precompute:</strong> Pre-stored Socratic ladders for all 2,587 misconceptions.</li>
+        </ul>
+      </div>
+      <div class="card highlight">
+        <h3>Production (1 CPU Core — Zero GPUs)</h3>
+        <ul style="font-size:13.5px; color:var(--ink2); line-height:1.7; padding-left:18px;">
+          <li><strong>Bi-Encoder INT8 ONNX:</strong> 2,587 &times; 384 matrix NumPy matmul (3.9 MB).</li>
+          <li><strong>Cross-Encoder INT8 ONNX:</strong> Reranks top-25 down to top-1.</li>
+          <li><strong>Primary-Key DB Lookup:</strong> SQLite fetches instant pedagogical hints.</li>
+          <li><strong>FastAPI:</strong> Under 150 MB RAM, sub-400ms latency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" id="s4">
+    <h2>Proven Benchmark &amp; 264× Cost Advantage</h2>
+    <p class="sub">Evaluated on the frozen NeurIPS 2024 Eedi competition dataset (882 held-out test queries).</p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="stat-val">0.261</div>
+        <div class="stat-label">MAP@25 Score (vs 0.153 Off-the-Shelf Baseline)</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-val">264×</div>
+        <div class="stat-label">Cheaper than Frontier LLM APIs ($0.002 vs $1.15 / 1k)</div>
+      </div>
+      <div class="card">
+        <div class="stat-val">380 ms</div>
+        <div class="stat-label">p50 CPU Latency (No GPU, No Cloud Network Lag)</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:20px;">
+      <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
+        <strong>The Key Insight:</strong> Frontier LLMs are too slow and expensive to evaluate in the live interactive hot path of every student response. WhyWrong runs the big model once in the kitchen — so serving is an instant, deterministic lookup at the table.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide" id="s5">
+    <h2>Honest Failure Analysis &amp; What's Next</h2>
+    <p class="sub">A real engineering demo inspects where it fails — and how to fix it.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Where It Fails Today</h3>
+        <p style="font-size:13.5px; color:var(--ink2); line-height:1.6; margin-bottom:8px;">
+          <strong>1. Missing Visuals:</strong> Questions requiring unrendered diagrams (e.g. tick marks on number lines).
+        </p>
+        <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
+          <strong>2. Ambiguous Distractors:</strong> Two misconceptions consistent with one student choice.
+        </p>
+      </div>
+      <div class="card highlight">
+        <h3>What We Build Next</h3>
+        <p style="font-size:13.5px; color:var(--ink2); line-height:1.6; margin-bottom:8px;">
+          <strong>Targeted Disambiguation:</strong> Rather than guess between near-twin labels, prompt the student with one diagnostic question.
+        </p>
+        <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
+          <strong>Beyond Math:</strong> Subject-agnostic taxonomy architecture applicable to science, grammar, and coding.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <button class="nav-btn" id="prev-btn" onclick="go(-1)">← Previous</button>
+  <span style="font-size:13px; color:var(--ink3);">Use ← / → keys or buttons to navigate</span>
+  <button class="nav-btn primary" id="next-btn" onclick="go(1)">Next →</button>
+</footer>
+
+<script>
+let cur = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+function show(i) {
+  slides[cur].classList.remove('active');
+  cur = (i + total) % total;
+  slides[cur].classList.add('active');
+  document.getElementById('slide-num').textContent = `${cur + 1} / ${total}`;
+  document.getElementById('prev-btn').disabled = (cur === 0);
+  document.getElementById('next-btn').textContent = (cur === total - 1) ? 'Finish' : 'Next →';
+}
+
+function go(d) {
+  if (cur + d >= 0 && cur + d < total) show(cur + d);
+}
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+show(0);
+</script>
+</body>
+</html>

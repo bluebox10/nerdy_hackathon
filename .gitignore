@@ -1,0 +1,21 @@
+# Python & Environments
+.venv/
+.venv*/
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints/
+
+# Intermediate Training Checkpoints & Raw Data (1.1+ GB, not needed for serving)
+models/
+data/raw/
+data/synth/
+*.npz
+bin/
+logs/
+
+# Development & Temp Files
+.DS_Store
+Thumbs.db
+*.log
+scratch/

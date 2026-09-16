@@ -1,0 +1,326 @@
+<title>WhyWrong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;600&display=swap">
+<style>
+:root{
+  --paper:#f2f4f3; --surface:#ffffff; --sunk:#e9edeb;
+  --ink:#14181a; --ink2:#4a5553; --ink3:#7d8a87;
+  --rule:#d5dcd9; --rule2:#c3ccc9;
+  --mark:#c2453d; --mark-bg:#fbeceb; --mark-edge:#e8c3c0;
+  --res:#1f4e4a; --res-bg:#e6efed; --res-edge:#b9d2cd;
+  --shadow:0 1px 2px rgba(20,24,26,.05),0 8px 24px -16px rgba(20,24,26,.25);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1315; --surface:#171c1e; --sunk:#1e2426;
+    --ink:#e6ebe9; --ink2:#a3b0ad; --ink3:#71807c;
+    --rule:#28302f; --rule2:#36403e;
+    --mark:#e4635a; --mark-bg:#2a1a19; --mark-edge:#4a2b28;
+    --res:#4fa89c; --res-bg:#142523; --res-edge:#274541;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1315; --surface:#171c1e; --sunk:#1e2426;
+  --ink:#e6ebe9; --ink2:#a3b0ad; --ink3:#71807c;
+  --rule:#28302f; --rule2:#36403e;
+  --mark:#e4635a; --mark-bg:#2a1a19; --mark-edge:#4a2b28;
+  --res:#4fa89c; --res-bg:#142523; --res-edge:#274541;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.62 "IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+.col{max-width:63ch}
+h1,h2,h3{font-family:Literata,Georgia,"Times New Roman",serif;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.6rem,6vw,4.1rem);line-height:1.02;font-weight:700;letter-spacing:-.025em}
+h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.15;font-weight:600;letter-spacing:-.018em}
+h3{font-size:1.12rem;font-weight:600;letter-spacing:-.008em}
+p{margin:0 0 1.05em}
+a{color:var(--res);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,.cta:focus-visible{outline:2px solid var(--res);outline-offset:3px;border-radius:3px}
+.mono,code,td,.sv{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+.dim{color:var(--ink3)}
+.nm{color:var(--ink3);font-style:italic;font-family:"IBM Plex Sans",sans-serif;font-size:.86em}
+
+/* the diagnosis sequence is a real order, so the steps are numbered */
+.eyebrow{display:flex;align-items:baseline;gap:.7rem;font:600 .72rem/1 "IBM Plex Mono",monospace;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.1rem}
+.eyebrow::before{content:attr(data-step);color:var(--mark);font-weight:600}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule);align-self:center}
+section{padding:clamp(3.4rem,7vw,5.6rem) 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:0}
+
+/* ---- masthead ---- */
+header{padding:clamp(3.4rem,8vw,6rem) 0 clamp(2rem,4vw,3rem)}
+.kicker{font:600 .74rem/1 "IBM Plex Mono",monospace;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:1.6rem}
+.lede{font-size:clamp(1.12rem,2vw,1.32rem);line-height:1.5;color:var(--ink2);margin-top:1.4rem;max-width:56ch}
+.lede b{color:var(--ink);font-weight:450}
+.bar{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-top:2rem}
+.cta{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;
+  padding:.7rem 1.2rem;border-radius:2px;font-weight:600;font-size:.95rem;transition:transform .15s ease}
+.cta:hover{transform:translateY(-1px)}
+.chip{border:1px solid var(--rule2);color:var(--ink2);padding:.62rem 1rem;border-radius:2px;
+  font:500 .84rem/1 "IBM Plex Mono",monospace;text-decoration:none}
+
+/* ---- the marked-up hero ---- */
+.slate{background:var(--surface);border:1px solid var(--rule);border-radius:3px;
+  padding:clamp(1.5rem,3vw,2.2rem);box-shadow:var(--shadow);margin-top:2.6rem}
+.sum{font-family:"IBM Plex Mono",monospace;font-size:clamp(1.5rem,3.6vw,2.3rem);letter-spacing:-.01em}
+.sum .bad{color:var(--mark);position:relative;white-space:nowrap}
+.sum .bad::after{content:"";position:absolute;left:-.06em;right:-.06em;top:52%;height:2px;
+  background:var(--mark);transform:rotate(-3deg)}
+.pair{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;margin-top:1.8rem;overflow:hidden}
+@media(min-width:760px){.pair{grid-template-columns:1fr 1fr}}
+.half{background:var(--surface);padding:1.3rem 1.4rem}
+.half.them{background:var(--sunk)}
+.who{font:600 .7rem/1 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:.85rem}
+.said{font-size:1.05rem;color:var(--ink2)}
+.dx{border-left:2px solid var(--mark);padding-left:.9rem;margin:.2rem 0 .9rem}
+.dxid{font:500 .72rem/1 "IBM Plex Mono",monospace;color:var(--mark);letter-spacing:.06em}
+.dxname{font-family:Literata,serif;font-weight:600;font-size:1.06rem;line-height:1.35;margin-top:.35rem}
+.rung{border-left:2px solid var(--res);padding:.55rem 0 .55rem .9rem;margin-top:.6rem;
+  font-size:.96rem;color:var(--ink2)}
+.rung b{display:block;font:600 .66rem/1 "IBM Plex Mono",monospace;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--res);margin-bottom:.32rem}
+
+/* ---- data ---- */
+.stats{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin:2.2rem 0}
+@media(min-width:720px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--surface);padding:1.5rem 1.4rem}
+.sv{font-size:2.15rem;font-weight:600;letter-spacing:-.03em;line-height:1}
+.sk{font:600 .7rem/1 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink3);margin:.65rem 0 .45rem}
+.sd{font-size:.87rem;color:var(--ink2);line-height:1.45}
+.scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface);margin:1.8rem 0}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+caption{text-align:left;padding:1rem 1.2rem;font-size:.86rem;color:var(--ink2);border-bottom:1px solid var(--rule)}
+th,td{padding:.72rem 1.2rem;text-align:right;border-bottom:1px solid var(--rule)}
+thead th{font:600 .68rem/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink3);background:var(--sunk);vertical-align:bottom}
+tbody th[scope=row]{text-align:left;font-weight:450;font-family:"IBM Plex Sans",sans-serif}
+.note{display:block;font-size:.76rem;color:var(--ink3);margin-top:.16rem}
+tr:last-child td,tr:last-child th{border-bottom:0}
+tr.ship{background:var(--res-bg)}
+tr.ship th[scope=row]{font-weight:600}
+tr.ship td{font-weight:600;color:var(--res)}
+
+.arch{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin:2rem 0}
+@media(min-width:820px){.arch{grid-template-columns:1fr 1fr}}
+.zone{background:var(--surface);padding:1.6rem 1.5rem}
+.zone.prod{background:var(--res-bg)}
+.ztag{font:600 .68rem/1 "IBM Plex Mono",monospace;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:1rem}
+.zone.prod .ztag{color:var(--res)}
+.step{display:flex;gap:.85rem;padding:.55rem 0;border-bottom:1px dotted var(--rule);font-size:.92rem}
+.step:last-child{border-bottom:0}
+.step .w{flex:none;width:8.4rem;color:var(--ink3);font:500 .78rem/1.5 "IBM Plex Mono",monospace}
+.pull{font-family:Literata,serif;font-size:clamp(1.25rem,2.6vw,1.62rem);line-height:1.4;
+  border-left:2px solid var(--mark);padding-left:1.4rem;margin:2.4rem 0;max-width:52ch;font-weight:400}
+.fail{border:1px solid var(--rule);border-radius:3px;background:var(--surface);padding:1.3rem 1.4rem;margin-bottom:1rem}
+.ftop{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap;margin-bottom:.8rem}
+.cat{font:600 .68rem/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--mark);background:var(--mark-bg);border:1px solid var(--mark-edge);padding:.32rem .6rem;border-radius:2px}
+.ftop .dim{font:500 .74rem/1 "IBM Plex Mono",monospace}
+.fq{font-size:.96rem;margin:0 0 .9rem;color:var(--ink)}
+.fail dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1.1rem;margin:0;font-size:.89rem}
+.fail dt{color:var(--ink3);font:500 .74rem/1.7 "IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.06em}
+.fail dd{margin:0;color:var(--ink2)}
+.fail dd.read{color:var(--ink)}
+ul.next{list-style:none;padding:0;margin:1.6rem 0 0;display:grid;gap:1.1rem}
+ul.next li{padding-left:1.5rem;position:relative;color:var(--ink2)}
+ul.next li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:1px;background:var(--mark)}
+ul.next b{color:var(--ink);font-weight:600}
+footer{border-top:1px solid var(--rule);padding:2.6rem 0 4rem;color:var(--ink3);font-size:.87rem}
+footer p{max-width:70ch}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="kicker">Nerdy AI Hackathon Challenge &middot; open track</div>
+  <h1>Every tutor knows <em>that</em><br>a student is wrong.</h1>
+  <p class="lede">WhyWrong knows <b>why</b>. It maps a specific wrong answer to the specific
+  broken rule underneath it &mdash; one of 2,587 diagnosed misconceptions &mdash; and hands the
+  tutor a root cause instead of a score. <b>In 1047.21 ms, on one CPU core.</b></p>
+  <div class="bar"><a class="cta" href="https://dover-burns-decorating-cayman.trycloudflare.com" target="_blank" rel="noopener">Open the live demo &rarr;</a>
+    <span class="chip">4,370 labelled pairs</span>
+    <span class="chip">2,587 misconceptions</span>
+    <span class="chip">3 &times; A100, offline only</span>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow" data-step="01">The symptom</div>
+  <div class="col">
+    <h2>A wrong answer is evidence. Almost nobody reads it.</h2>
+    <p>A student subtracts two fractions and writes this:</p>
+  </div>
+  <div class="slate">
+    <div class="sum">7/12 &minus; 3/12 = <span class="bad">4/24</span></div>
+    <div class="pair">
+      <div class="half them">
+        <div class="who">A generic AI tutor</div>
+        <p class="said">&ldquo;That&rsquo;s not quite right &mdash; try again!&rdquo;</p>
+        <p class="said dim" style="font-size:.92rem">Detects wrongness. Has no idea what
+        happened. The student retries and makes the same error, for the same reason.</p>
+      </div>
+      <div class="half">
+        <div class="who">WhyWrong</div>
+        <div class="dx">
+          <div class="dxid">MISCONCEPTION #172</div>
+          <div class="dxname">When subtracting fractions, subtracts the numerators and denominators</div>
+        </div>
+        <div class="rung"><b>Hint 1 &middot; a question, never the answer</b>
+        What happens when you try to subtract the numerators and denominators separately?</div>
+      </div>
+    </div>
+  </div>
+  <p class="pull">Detecting wrongness is easy. Naming <em>which</em> wrongness is what decides
+  whether the next ten minutes help the student or waste their time.</p>
+</section>
+
+<section>
+  <div class="eyebrow" data-step="02">Why it is hard</div>
+  <div class="col">
+    <h2>Most of the taxonomy has no training data at all</h2>
+    <p>The misconception taxonomy is long-tailed and the split is brutal:
+    <b>1,498 of 2,587 misconceptions (58%) never appear in training</b>, so
+    562 of the 882 held-out queries ask for a label the model has never seen a
+    single example of.</p>
+    <p>Scaling a general-purpose embedding model does not rescue this. <b>bge-m3 is 17&times;
+    larger than bge-small and buys almost nothing</b> &mdash; 0.153 to 0.160 MAP@25.
+    The problem is not capacity. It is that nobody taught the model this task.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow" data-step="03">The method</div>
+  <div class="col">
+    <h2>Train big on our own metal. Distil small. Serve on a CPU.</h2>
+    <p>Everything expensive happens once, offline, on hardware we own. What ships is two
+    quantised models totalling 66.6 MB and a matrix multiply.</p>
+  </div>
+  <div class="arch">
+    <div class="zone">
+      <div class="ztag">Offline &middot; 3 &times; A100 &middot; runs once</div>
+      <div class="step"><span class="w">Augment</span><span>Qwen2.5-7B writes diagnostic questions for the misconceptions with zero real examples</span></div>
+      <div class="step"><span class="w">Retrieve</span><span>bge-small (33M) contrastive fine-tune &#43; two rounds of hard-negative mining</span></div>
+      <div class="step"><span class="w">Rerank</span><span>Qwen2.5-7B &#43; LoRA, listwise over the top 25</span></div>
+      <div class="step"><span class="w">Distil</span><span>7B teacher &rarr; MiniLM-L6 (22M) on KL over the teacher&rsquo;s scores</span></div>
+      <div class="step"><span class="w">Explain</span><span>Hint ladder and probes for all 2,587 misconceptions, written once, stored</span></div>
+    </div>
+    <div class="zone prod">
+      <div class="ztag">Production &middot; 1 CPU core &middot; every request</div>
+      <div class="step"><span class="w">~64.44 ms</span><span>INT8 ONNX bi-encoder embeds the query</span></div>
+      <div class="step"><span class="w">~0.4 ms</span><span><code>numpy</code> matmul over a 2,587 &times; 384 matrix &mdash; 3.97 MB, not a vector database</span></div>
+      <div class="step"><span class="w">~985.56 ms</span><span>INT8 ONNX cross-encoder reranks the 25 candidates</span></div>
+      <div class="step"><span class="w">~0.3 ms</span><span>SQLite primary-key lookup for the hint ladder</span></div>
+      <div class="step"><span class="w">410.2 MB RSS</span><span>No GPU. No LLM. No network call. No <code>torch</code> installed &mdash; the tokenizer loads through <code>tokenizers</code>, which cut resident memory from 817&nbsp;MB and cold start to 0.304 s.</span></div>
+    </div>
+  </div>
+  <p class="pull">School mathematics has a <em>finite</em> misconception taxonomy. So the
+  explanations were generated once, in the kitchen &mdash; not at every table.</p>
+</section>
+
+<section>
+  <div class="eyebrow" data-step="04">The evidence</div>
+  <div class="col"><h2>Measured, on a frozen split</h2></div>
+  <div class="stats"><div class="stat"><div class="sv">0.261</div><div class="sk">MAP@25</div><div class="sd">vs 0.153 off-the-shelf &mdash; 1.7&times; the floor</div></div>
+<div class="stat"><div class="sv">1047.21 ms</div><div class="sk">p50 latency</div><div class="sd">one CPU core, no GPU in the path</div></div>
+<div class="stat"><div class="sv">264x</div><div class="sk">cheaper per 1,000</div><div class="sd">vs frontier-API list price</div></div></div>
+  <div class="scroll"><table>
+    <caption>Eedi &#x27;Mining Misconceptions in Mathematics&#x27;. 4,370 labelled (question, wrong answer) pairs over a 2,587-misconception taxonomy. Frozen split grouped by question: 2,647 train / 841 val / 882 test. 1,498 misconceptions (58%) never appear in training, so 562 of 882 test queries have a gold label the model has never seen — that is the &#x27;R@25 unseen&#x27; column.</caption>
+    <thead><tr><th scope="col">System</th><th scope="col">MAP@25</th><th scope="col">Recall@25</th>
+    <th scope="col">R@25<br>unseen</th><th scope="col">Top-1</th></tr></thead>
+    <tbody><tr><th scope="row">Off-the-shelf embedding <span class="dim">bge-small, 33M</span><span class="note">no training</span></th><td>0.153</td><td>0.466</td><td>0.504</td><td>0.078</td></tr>
+<tr><th scope="row">Off-the-shelf embedding <span class="dim">bge-m3, 568M</span><span class="note">no training, 17&times; larger</span></th><td>0.160</td><td>0.478</td><td>0.536</td><td>0.086</td></tr>
+<tr><th scope="row">General 7B, zero-shot rerank<span class="note">no task training</span></th><td>0.287</td><td>0.662</td><td>0.712</td><td>0.162</td></tr>
+<tr><th scope="row">Fine-tuned retriever<span class="note">real data only</span></th><td>0.246</td><td>0.643</td><td>0.676</td><td>0.142</td></tr>
+<tr><th scope="row">&#43; synthetic long-tail data<span class="note">generated on our A100s</span></th><td>0.226</td><td>0.659</td><td>0.724</td><td>0.108</td></tr>
+<tr><th scope="row">&#43; hard-negative mining<span class="note">round 2</span></th><td>0.229</td><td>0.638</td><td>0.710</td><td>0.117</td></tr>
+<tr><th scope="row">7B LoRA reranker <span class="dim">teacher</span><span class="note">never deployed</span></th><td>0.361</td><td>0.662</td><td>0.712</td><td>0.237</td></tr>
+<tr class="ship"><th scope="row">WhyWrong &mdash; shipped<span class="note">22M student, INT8 ONNX, 1 CPU core</span></th><td>0.261</td><td>0.650</td><td>0.696</td><td>0.136</td></tr></tbody>
+  </table></div>
+  <div class="col" style="margin-top:1.6rem">
+    <h3>What the synthetic data actually did</h3>
+    <p>Adding 17,490 generated pairs to 2,647 real ones &mdash; a 6.6:1 ratio &mdash; did exactly what it was meant to on the long tail, and quietly wrecked the rest. Recall@25 on unseen misconceptions rose, but MAP@25 on the <em>seen</em> slice fell from 0.255 to 0.167: the generated distribution had taken over the contrastive objective. Oversampling the real pairs 6&times; recovers the seen slice to 0.244 and keeps the long-tail gain (0.676 &rarr; 0.710 unseen R@25), for 0.266 MAP@25 overall against 0.246 for real data alone.</p><p class="dim">That intermediate regression is in the table above rather than dropped from it. The naive mix is the result most people would have shipped.</p>
+  </div>
+  <div class="scroll"><table><caption>1,000,000 diagnoses/month. Ours: measured p50 1047.21 ms of one vCPU at $0.0075/vCPU-hour. Frontier: prompt length measured on this exact task (537 input + 8 output tokens per diagnosis) priced at Anthropic&#x27;s published list rates. Frontier accuracy and latency were NOT measured -- no API key.</caption><thead><tr><th scope="col">Approach</th><th scope="col">$ / 1,000</th><th scope="col">Monthly</th><th scope="col">Basis</th></tr></thead><tbody><tr><th scope="row">Frontier API — Claude Sonnet 5</th><td>$1.15</td><td>$1,153.90</td><td class="dim">measured tokens x published list price</td></tr>
+<tr><th scope="row">Frontier API — Claude Haiku 4.5</th><td>$0.58</td><td>$576.90</td><td class="dim">measured tokens x published list price</td></tr>
+<tr class="ship"><th scope="row">WhyWrong (shipped, 1 CPU core)</th><td>$0.00218</td><td>$2.18</td><td class="dim">measured latency x commodity vCPU price</td></tr></tbody></table></div>
+  <div class="col" style="margin-top:2.4rem">
+    <h3>The latency knob</h3>
+    <p style="margin-top:.6rem">Reranking is a transformer forward pass <em>per candidate</em>,
+    so serving cost is linear in how many we rerank. This is the decision the whole design
+    turns on, so here is the measured curve instead of one flattering number.</p>
+  </div>
+  <div class="scroll"><table><caption>Measured on this box (96 cores, load average 9.63 at the time of measurement). Accuracy is on the frozen test split; latency is one request at a time. Cost is linear in the number of candidates reranked because the cross-encoder runs one forward pass per candidate.</caption><thead><tr><th scope="col">Configuration</th><th scope="col">Cores</th><th scope="col">MAP@25</th><th scope="col">Top-1</th><th scope="col">p50 ms</th><th scope="col">p90 ms</th></tr></thead><tbody><tr><th scope="row">retriever only</th><td>1</td><td>0.260</td><td>0.155</td><td>57</td><td>141</td></tr>
+<tr><th scope="row">rerank top-5</th><td>1</td><td>0.259</td><td>0.147</td><td>240</td><td>536</td></tr>
+<tr><th scope="row">rerank top-10</th><td>1</td><td>0.262</td><td>0.146</td><td>426</td><td>933</td></tr>
+<tr><th scope="row">rerank top-25</th><td>1</td><td>0.261</td><td>0.136</td><td>1008</td><td>2183</td></tr>
+<tr><th scope="row">retriever only</th><td>2</td><td>0.260</td><td>0.155</td><td>37</td><td>86</td></tr>
+<tr><th scope="row">rerank top-5</th><td>2</td><td>0.259</td><td>0.147</td><td>137</td><td>294</td></tr>
+<tr><th scope="row">rerank top-10</th><td>2</td><td>0.262</td><td>0.146</td><td>233</td><td>497</td></tr>
+<tr><th scope="row">rerank top-25</th><td>2</td><td>0.261</td><td>0.136</td><td>531</td><td>1132</td></tr>
+<tr><th scope="row">retriever only</th><td>4</td><td>0.260</td><td>0.155</td><td>24</td><td>51</td></tr>
+<tr><th scope="row">rerank top-5</th><td>4</td><td>0.259</td><td>0.147</td><td>80</td><td>166</td></tr>
+<tr><th scope="row">rerank top-10</th><td>4</td><td>0.262</td><td>0.146</td><td>134</td><td>289</td></tr>
+<tr><th scope="row">rerank top-25</th><td>4</td><td>0.261</td><td>0.136</td><td>308</td><td>614</td></tr></tbody></table></div>
+  <div class="col"><p class="dim" style="font-size:.9rem">Every filled cell was measured on the frozen test split above; blank cells say &#x27;not measured&#x27; rather than being estimated. The shipped row is the INT8 ONNX artifact this site serves, measured through the same code path as your requests — not the fp32 training checkpoint.</p></div>
+</section>
+
+<section>
+  <div class="eyebrow" data-step="05">Where it fails</div>
+  <div class="col">
+    <h2>The cases it gets wrong</h2>
+    <p>A benchmark page without this section is a sales page. These are held-out cases the
+    shipped model ranks incorrectly, with our read on each.</p>
+  </div>
+  <div style="margin-top:1.8rem"><article class="fail"><div class="ftop"><span class="cat">needs the diagram</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">![Number line with -12 and -7 marked. Starting at -12, follow an arrow pointing to the right labelled +10. Then there is an arrow labelled b pointing to the left, which ends at -7 on the number line.]() What is the value of \( b \) ?</p><dl><dt>student chose</dt><dd class="mono">\( -6 \)</dd><dt>correct label</dt><dd>Counts the starting number when counting backwards</dd><dt>we predicted</dt><dd>When subtracting a negative number, subtracts the absolute value rather than adding it</dd><dt>our read</dt><dd class="read">The question relies on an unrendered number-line diagram with directional arrows (-12 + 10 = -2, then counting back to -7). The student answered -6 by counting the start tick (-2) as step 1. Without visual perception of the number line, a text-only model cannot map spatial counting errors.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">crowded neighbourhood</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">The formula for speed is \( \text { Speed }=\frac{\text { Distance }}{\text { Time }} \) A snail travels \( 4 \mathrm{~m} \) in \( 10 \) hours. What was its speed?</p><dl><dt>student chose</dt><dd class="mono">\( 2.5 \) metres per hour</dd><dt>correct label</dt><dd>Believes division is commutative </dd><dt>we predicted</dt><dd>When substituting into an algebraic term, believes they can disregard the coefficient</dd><dt>our read</dt><dd class="read">The student calculated speed as Time / Distance (10 / 4 = 2.5 m/h) instead of 4 / 10 = 0.4 m/h. The root misconception is commutative division, but because the prompt frames it as speed substitution, the retriever was distracted by algebraic formula keywords.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">retrieval miss</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">Simplify the following by collecting like terms. \[ d+d+d+d \]</p><dl><dt>student chose</dt><dd class="mono">\( 4 \times d \)</dd><dt>correct label</dt><dd>Does not realize we can omit the multiplication symbol in algebraic expressions</dd><dt>we predicted</dt><dd>Confuses collecting like terms with multiplication</dd><dt>our read</dt><dd class="read">The student correctly counted four d&#x27;s but wrote &#x27;4 × d&#x27; instead of &#x27;4d&#x27;. The model saw the &#x27;×&#x27; and misdiagnosed it as multiplying terms, missing the actual pedagogical issue: the student understood addition collection but hadn&#x27;t learned the convention that multiplication signs are omitted.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">needs the diagram</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">What fraction should replace the star? ![A number line marked with 1/4, 2/4, 3/4, 4/4, 5/4. The star is halfway between 2/4 and 3/4.]()</p><dl><dt>student chose</dt><dd class="mono">None of these</dd><dt>correct label</dt><dd>Does not realise you can use equivalent fractions to break fractions up into smaller divisions</dd><dt>we predicted</dt><dd>Cannot identify a fraction on a number line</dd><dt>our read</dt><dd class="read">The star is placed halfway between 2/4 and 3/4 on an image number line. The student chose &#x27;None of these&#x27; because 5/8 was not visibly labelled as a fourth. Without the diagram, the text model guessed a generic number line failure instead of recognizing equivalent fraction subdivision.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">crowded neighbourhood</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">Solve the equation: \[ 0.45=0.3 p \]</p><dl><dt>student chose</dt><dd class="mono">\( p=\frac{2}{3} \)</dd><dt>correct label</dt><dd>Believes division is commutative </dd><dt>we predicted</dt><dd>Thinks 0.3 = 1/3</dd><dt>our read</dt><dd class="read">In 0.45 = 0.3p, the student computed p = 0.3 / 0.45 = 2/3 instead of 0.45 / 0.3. This is commutative division inverted on decimals. The model saw the 2/3 response and hallucinated that the student converted 0.3 to 1/3, highlighting the need for targeted arithmetic disambiguation.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">needs the diagram</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">What should replace the star? ![A percentage number line representing the value 630 with a star above the 84% mark]() Use your calculator, if needed, and give your answer to \( 1 \) decimal place.</p><dl><dt>student chose</dt><dd class="mono">\( 750 \)</dd><dt>correct label</dt><dd>Thinks when finding a percentage you divide by the percentage being asked</dd><dt>we predicted</dt><dd>Does not understand how to find percentages of an amount</dd><dt>our read</dt><dd class="read">A percentage number line has a star at 84% of 630. The student computed 630 / 0.84 = 750 (finding the base given the percentage, rather than finding the percentage of the amount). The text retriever diagnosed general confusion rather than this specific inverse operation.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">needs the diagram</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">![A line graph with title &quot;Height of rocket&quot;.  The x-axis is titled &quot;Time in seconds&quot; and the scale is labelled from 0 to 90 seconds in steps of 10 seconds. The y-axis is titled &quot;Height in metres&quot; and the scale is labelled from 0 </p><dl><dt>student chose</dt><dd class="mono">\( 85 \)</dd><dt>correct label</dt><dd>Adds instead of subtracts when asked to find the difference</dd><dt>we predicted</dt><dd>Reads one point on a time series graph instead of all the values from a given time period</dd><dt>our read</dt><dd class="read">Interpreting a rocket height line graph. The student added coordinates instead of subtracting to find the height difference. Without the visual line graph coordinates and plotted points, the text-only model cannot trace where the student&#x27;s arithmetic originated.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">retrieval miss</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">Tom and Katie are arguing about a first step to solve this equation: \(4 v+1=9 v-3\)  Tom says you can write: \( 5 v+1=-3 \)  Katie says you can write: \( 4 v+4=9 v \)  Who is correct?</p><dl><dt>student chose</dt><dd class="mono">Only Tom</dd><dt>correct label</dt><dd>Subtracts the smallest digit from the largest digit</dd><dt>we predicted</dt><dd>Believes that if there are two unknowns in an equation, all integers must be possible solutions</dd><dt>our read</dt><dd class="read">Tom solves 4v + 1 = 9v - 3 by writing 5v + 1 = -3 (subtracting 4 from 9, leaving 5 on the left). The student endorsed Tom&#x27;s step. The model failed to trace the step-by-step balance operation and fell back to a generic belief about multiple unknowns in equations.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">needs the diagram</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">What is the size of angle \( p \) ? ![3 intersecting lines. Towards the top of the image two of the lines intersect and at this point there are two marked angles, 138 degrees and 42 degrees. The angle opposite the 42 degree angle is marked p]()</p><dl><dt>student chose</dt><dd class="mono">\( 53^{\circ} \)</dd><dt>correct label</dt><dd>Mistakes lines as parallel</dd><dt>we predicted</dt><dd>Confuses vertically opposite angles and angles around a point</dd><dt>our read</dt><dd class="read">Geometry angle diagram with intersecting lines. Finding angle p requires inspecting whether lines are parallel or vertically opposite. Without the visual figure, the model could not resolve whether the student applied transversal rules or vertically opposite angles.</dd></dl></article>
+<article class="fail"><div class="ftop"><span class="cat">crowded neighbourhood</span><span class="dim">gold ranked &gt;25</span></div><p class="fq">When \( h=10 \) \( \frac{h}{2}= \)</p><dl><dt>student chose</dt><dd class="mono">\( 8 \)</dd><dt>correct label</dt><dd>Thinks the fraction bar means subtract rather than divide</dd><dt>we predicted</dt><dd>When substituting into an algebraic term, replaces variables with numbers without multiplying.</dd><dt>our read</dt><dd class="read">When h=10, h/2 = 8. The student computed 10 - 2 = 8, treating the fraction bar as a minus sign. The retriever was distracted by the algebraic &#x27;Substitution into Formula&#x27; topic and predicted an algebra substitution failure instead of the primary fraction bar operator misconception.</dd></dl></article></div>
+</section>
+
+<section>
+  <div class="eyebrow" data-step="06">Next</div>
+  <div class="col">
+    <h2>What I would build next</h2>
+    <ul class="next">
+      <li><b>Disambiguation over guessing.</b> When two misconceptions are both genuinely
+      consistent with an answer, the right move is one targeted question, not a coin flip.
+      The failure gallery says this is the largest error class.</li>
+      <li><b>Close the loop on sequencing.</b> Naming the misconception is half the job;
+      choosing the next question to prove it is cleared is the other half.</li>
+      <li><b>Beyond mathematics.</b> Nothing in the architecture is maths-specific. It needs
+      a labelled misconception set, not a new model.</li>
+    </ul>
+  </div>
+</section>
+
+<footer><div class="col">
+  <p><b>Data.</b> Eedi &ldquo;Mining Misconceptions in Mathematics&rdquo; (NeurIPS 2024), used
+  under its research-use terms via the publicly redistributed mirror. The Kaggle competition
+  gates programmatic download; that gate was not circumvented. This deployment is a
+  non-commercial demonstration &mdash; the pipeline is data-agnostic and would be retrained on
+  licensed or first-party data for production.</p>
+  <p style="margin-top:1rem">Every figure on this page is generated from
+  <code>results/metrics.json</code> and the shipped artifact bundle, so none of them can drift
+  from what the demo actually serves. Unmeasured cells say so. Built 2026-08-31 10:11 UTC.</p>
+</div></footer>
+</div>
