@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WhyWrong: Project Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root {
+  --bg: #090b10;
+  --card-bg: #121622;
+  --card-border: #22293d;
+  --ink: #f0f3fa;
+  --ink-muted: #9aa5be;
+  --ink-dim: #657088;
+  --accent: #4a7dff;
+  --accent-light: #6a96ff;
+  --accent-glow: rgba(74, 125, 255, 0.15);
+  --good: #3ddc97;
+  --good-bg: rgba(61, 220, 151, 0.12);
+  --warn: #ffb545;
+  --warn-bg: rgba(255, 181, 69, 0.12);
+  --bad: #ff5c7a;
+  --bad-bg: rgba(255, 92, 122, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@page {
+  size: 1920px 1080px;
+  margin: 0;
+}
+
+.slide {
+  width: 1920px;
+  height: 1080px;
+  padding: 80px 100px;
+  position: relative;
+  background: radial-gradient(circle at 85% 15%, rgba(74, 125, 255, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 15% 85%, rgba(124, 92, 255, 0.05) 0%, transparent 50%),
+              var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  page-break-after: always;
+  break-after: page;
+  overflow: hidden;
+}
+
+/* Header */
+.slide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 24px;
+}
+.brand {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.brand span { color: var(--accent); }
+.badge {
+  background: var(--accent-glow);
+  color: var(--accent-light);
+  border: 1px solid rgba(74, 125, 255, 0.35);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.slide-counter {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink-dim);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Titles */
+h1 {
+  font-size: 58px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+h2 {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+}
+.sub {
+  font-size: 20px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  max-width: 1300px;
+}
+
+/* Main Content Layouts */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 32px;
+  position: relative;
+}
+.card.highlight {
+  border-color: rgba(74, 125, 255, 0.45);
+  background: linear-gradient(145deg, rgba(74, 125, 255, 0.12), rgba(18, 22, 34, 0.95));
+}
+.card h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-dim);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+.card h4 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.card p {
+  font-size: 16px;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+/* Stats */
+.stat-val {
+  font-size: 52px;
+  font-weight: 800;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--accent-light);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-val.good { color: var(--good); }
+.stat-val.warn { color: var(--warn); }
+.stat-label {
+  font-size: 15px;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+/* Pills & Tags */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.pill.good { background: var(--good-bg); color: var(--good); }
+.pill.warn { background: var(--warn-bg); color: var(--warn); }
+.pill.bad { background: var(--bad-bg); color: var(--bad); }
+.pill.info { background: var(--accent-glow); color: var(--accent-light); }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+th {
+  text-align: left;
+  padding: 12px 16px;
+  color: var(--ink-dim);
+  font-weight: 600;
+  border-bottom: 1px solid var(--card-border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(34, 41, 61, 0.6);
+  color: var(--ink-muted);
+}
+tr.highlight td {
+  background: rgba(74, 125, 255, 0.08);
+  color: var(--ink);
+  font-weight: 600;
+}
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* Footer */
+.slide-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--card-border);
+  padding-top: 20px;
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title / Cover -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Nerdy AI Hackathon Challenge Submission</span>
+    <div class="slide-counter">01 / 06</div>
+  </div>
+  
+  <div class="content" style="max-width: 1400px;">
+    <div style="margin-bottom: 24px;">
+      <span class="pill info">Educational AI</span>
+      <span class="pill info">Knowledge Distillation</span>
+      <span class="pill info">Edge Inference</span>
+    </div>
+    <h1>WhyWrong: Mathematics Misconception Diagnosis</h1>
+    <p class="sub" style="font-size: 24px; line-height: 1.5; margin-bottom: 48px;">
+      An automated diagnostic engine that maps student math errors to an underlying 2,587-class misconception taxonomy, generating targeted Socratic hint ladders and live session insights on lightweight CPU hardware.
+    </p>
+    
+    <div class="grid-4">
+      <div class="card highlight">
+        <div class="stat-val good">2,587</div>
+        <div class="stat-label">Taxonomy Misconceptions</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-val good">&lt;400 ms</div>
+        <div class="stat-label">p50 CPU Latency</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-val good">264×</div>
+        <div class="stat-label">Cost Advantage vs Frontier APIs</div>
+      </div>
+      <div class="card highlight">
+        <div class="stat-val">1 Core</div>
+        <div class="stat-label">Zero GPU Dependency at Serving</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>Project by <strong>bluebox123</strong> · GitHub: <span class="mono">bluebox10/nerdy_hackathon</span></div>
+    <div>Trained on NeurIPS 2024 Eedi Mathematics Research Dataset</div>
+  </div>
+</section>
+
+<!-- SLIDE 2: Problem & Student Experience -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Student Diagnostic Experience</span>
+    <div class="slide-counter">02 / 06</div>
+  </div>
+
+  <div class="content">
+    <h2>From Binary Scoring to Root-Cause Diagnosis</h2>
+    <p class="sub" style="margin-bottom: 36px;">
+      Conventional tools evaluate whether an answer is correct or incorrect. WhyWrong identifies the underlying misconception rule and guides the student through self-correction.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Standard Practice Platforms</h3>
+        <h4>Binary Feedback Failure</h4>
+        <p style="margin-bottom: 20px;">
+          Student evaluates: <span class="mono" style="color:var(--ink); font-weight:600;">7/12 - 3/12 = 4/24</span>
+        </p>
+        <div style="background:var(--bad-bg); border:1px solid rgba(255,92,122,0.3); border-radius:10px; padding:16px; margin-bottom:18px;">
+          <p style="color:var(--bad); font-weight:600; font-size:17px;">❌ "That is not quite right, try again!"</p>
+        </div>
+        <p>
+          The student repeatedly applies the same flawed procedure (subtracting denominators) without understanding why it fails, leading to frustration and disengagement.
+        </p>
+      </div>
+
+      <div class="card highlight">
+        <h3>WhyWrong Diagnostic Engine</h3>
+        <h4>Pedagogical Socratic Ladder</h4>
+        <p style="margin-bottom: 20px;">
+          Identifies: <span class="mono" style="color:var(--good); font-weight:600;">#172: Subtracts numerators and denominators</span>
+        </p>
+        <div style="background:var(--good-bg); border:1px solid rgba(61,220,151,0.3); border-radius:10px; padding:16px; margin-bottom:18px;">
+          <p style="color:var(--good); font-weight:600; font-size:17px;">🎯 Targeted 3-Step Socratic Progression</p>
+        </div>
+        <ul style="color:var(--ink-muted); font-size:15px; line-height:1.7; padding-left:20px;">
+          <li><strong>Step 1 (Guiding Question):</strong> "What parts of the fraction change when parts of the same size are removed?"</li>
+          <li><strong>Step 2 (Conceptual Clue):</strong> "Think about eighths or quarters: if you have 7 eighths and lose 3, the size remains eighths."</li>
+          <li><strong>Step 3 (The Rule):</strong> "When fractions have common denominators, subtract only numerators."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>Adaptive Sequencing: Follow-up problems are dynamically selected to verify if the diagnosed misconception cleared.</div>
+    <div>Local ONNX Inference</div>
+  </div>
+</section>
+
+<!-- SLIDE 3: Tutor Session Intelligence -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Tutor Analytics</span>
+    <div class="slide-counter">03 / 06</div>
+  </div>
+
+  <div class="content">
+    <h2>Session Intelligence for Educators</h2>
+    <p class="sub" style="margin-bottom: 36px;">
+      During a 45-minute 1-on-1 tutoring session, educators cannot manually cross-reference dozens of disparate errors. WhyWrong clusters mistakes across different subjects to uncover shared root causes.
+    </p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>1. Multitopic Aggregation</h3>
+        <h4>Disparate Errors</h4>
+        <p style="margin-bottom: 16px;">
+          Student Priya submits incorrect answers across 6 questions spanning 4 separate topics:
+        </p>
+        <ul style="font-size:14px; line-height:1.8; color:var(--ink-muted); padding-left:18px;">
+          <li>Linear Equations: <span class="mono">4(m - 1) = 20</span></li>
+          <li>Expanding Single Brackets: <span class="mono">x(3x - 5)</span></li>
+          <li>Factorising Expressions: <span class="mono">24abc² - 16b²c</span></li>
+          <li>Algebraic Fractions: <span class="mono">4 / 2(x + 3)</span></li>
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <h3>2. Embedding Clustering</h3>
+        <h4>Root Cause Alert</h4>
+        <div style="margin-bottom: 16px;">
+          <span class="pill warn">100% Shared Cause</span>
+          <span class="pill info">Confidence: 89%</span>
+        </div>
+        <h4 style="color:var(--warn); font-size:19px; margin-bottom:12px;">
+          #220: Only multiplies the first term in bracket expansion
+        </h4>
+        <p style="font-size:14px;">
+          Rather than 4 separate knowledge gaps, WhyWrong's embedding space clusters the mistakes into a single conceptual misunderstanding.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>3. Actionable Intervention</h3>
+        <h4>Immediate Tutor Tools</h4>
+        <p style="margin-bottom: 12px; font-weight:600; color:var(--ink);">
+          Suggested Opening Prompt:
+        </p>
+        <p style="font-style:italic; font-size:14px; margin-bottom:18px; color:var(--accent-light);">
+          "Can you talk me through how you expanded the second term in this bracket?"
+        </p>
+        <p style="font-weight:600; color:var(--ink); margin-bottom:8px;">
+          Mastery Check Probes:
+        </p>
+        <ul style="font-size:13.5px; line-height:1.6; color:var(--ink-muted); padding-left:18px;">
+          <li>Probe 1: Apply distributive property across terms with mixed signs.</li>
+          <li>Probe 2: Factorise negative coefficients.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>Live session clustering saves educators 10+ minutes of manual diagnostic effort per lesson.</div>
+    <div>Live Tutor View</div>
+  </div>
+</section>
+
+<!-- SLIDE 4: Architecture & Knowledge Distillation -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Engineering & Architecture</span>
+    <div class="slide-counter">04 / 06</div>
+  </div>
+
+  <div class="content">
+    <h2>Two-Stage Retrieval &amp; Distillation Pipeline</h2>
+    <p class="sub" style="margin-bottom: 30px;">
+      Heavy frontier models run offline once for synthetic augmentation and teacher supervision. Serving is distilled into a compact 22M INT8 ONNX model running on commodity CPU.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Offline Training (GPU Infrastructure)</h3>
+        <h4>Training &amp; Distillation</h4>
+        <ul style="font-size:15px; line-height:1.8; color:var(--ink-muted); padding-left:20px;">
+          <li>
+            <strong>Synthetic Augmentation:</strong> Qwen2.5-7B generated 17,490 diagnostic question pairs covering 1,498 zero-shot taxonomy classes (58% of taxonomy).
+          </li>
+          <li>
+            <strong>Retriever Training:</strong> BGE-small (33M) contrastive fine-tuning with hard-negative mining; real pairs oversampled 6× to preserve seen performance.
+          </li>
+          <li>
+            <strong>Teacher Model:</strong> Qwen2.5-7B + LoRA listwise cross-encoder reranker trained over top-25 candidate pools.
+          </li>
+          <li>
+            <strong>Knowledge Distillation:</strong> Teacher soft scores distilled into a 22M MiniLM-L6 cross-encoder via KL divergence loss.
+          </li>
+          <li>
+            <strong>Explanation Caching:</strong> Socratic hint ladders for all 2,587 misconceptions precomputed and indexed into SQLite.
+          </li>
+        </ul>
+      </div>
+
+      <div class="card highlight">
+        <h3>Production Runtime (1 CPU Core)</h3>
+        <h4>Deterministic Serving Path</h4>
+        <div style="display:flex; flex-direction:column; gap:16px; margin-top:8px;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--card-border); padding:14px 18px; border-radius:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>1. Bi-Encoder Embedding (INT8 ONNX)</strong>
+              <span class="mono" style="color:var(--accent-light);">~15 ms</span>
+            </div>
+            <p style="font-size:13.5px; margin-top:4px;">Encodes question and student response into 384-d normalized vector.</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--card-border); padding:14px 18px; border-radius:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>2. NumPy Matrix Multiplication</strong>
+              <span class="mono" style="color:var(--accent-light);">&lt;1 ms</span>
+            </div>
+            <p style="font-size:13.5px; margin-top:4px;">Evaluates query vector against 2,587 × 384 index (3.97 MB) to select top-25.</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--card-border); padding:14px 18px; border-radius:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>3. Distilled Cross-Encoder (INT8 ONNX)</strong>
+              <span class="mono" style="color:var(--accent-light);">~360 ms</span>
+            </div>
+            <p style="font-size:13.5px; margin-top:4px;">Reranks top-25 candidate misconceptions down to top-1 prediction.</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--card-border); padding:14px 18px; border-radius:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <strong>4. SQLite Primary-Key Lookup</strong>
+              <span class="mono" style="color:var(--accent-light);">&lt;1 ms</span>
+            </div>
+            <p style="font-size:13.5px; margin-top:4px;">Fetches Socratic hint progression and educator probes from indexed storage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>Bounded taxonomy ensures zero cloud API dependence, sub-400ms latency, and 100% uptime.</div>
+    <div>Architecture</div>
+  </div>
+</section>
+
+<!-- SLIDE 5: Evaluation & Cost Benchmarks -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Benchmark & Validation</span>
+    <div class="slide-counter">05 / 06</div>
+  </div>
+
+  <div class="content">
+    <h2>Empirical Results on Held-Out Test Split</h2>
+    <p class="sub" style="margin-bottom: 24px;">
+      Evaluated on the NeurIPS 2024 Eedi competition dataset (882 held-out test queries, 64% featuring unseen gold labels).
+    </p>
+
+    <div class="grid-2" style="align-items:start;">
+      <div class="card" style="padding: 20px;">
+        <h3>Held-Out Metric Comparison</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Model / Approach</th>
+              <th>Params</th>
+              <th>MAP@25</th>
+              <th>Recall@25</th>
+              <th>R@25 (Unseen)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Off-the-shelf bge-small</td>
+              <td class="mono">33M</td>
+              <td class="mono">0.153</td>
+              <td class="mono">0.466</td>
+              <td class="mono">0.504</td>
+            </tr>
+            <tr>
+              <td>Off-the-shelf bge-m3</td>
+              <td class="mono">568M</td>
+              <td class="mono">0.160</td>
+              <td class="mono">0.478</td>
+              <td class="mono">0.536</td>
+            </tr>
+            <tr>
+              <td>Fine-tuned retriever (real data)</td>
+              <td class="mono">33M</td>
+              <td class="mono">0.246</td>
+              <td class="mono">0.643</td>
+              <td class="mono">0.676</td>
+            </tr>
+            <tr>
+              <td>+ Synthetic data + 6× oversample</td>
+              <td class="mono">33M</td>
+              <td class="mono">0.266</td>
+              <td class="mono">0.661</td>
+              <td class="mono">0.710</td>
+            </tr>
+            <tr>
+              <td>7B LoRA reranker (teacher)</td>
+              <td class="mono">7.6B</td>
+              <td class="mono">0.361</td>
+              <td class="mono">0.662</td>
+              <td class="mono">0.712</td>
+            </tr>
+            <tr class="highlight">
+              <td><strong>WhyWrong Shipped (INT8 ONNX)</strong></td>
+              <td class="mono"><strong>22M</strong></td>
+              <td class="mono"><strong>0.261</strong></td>
+              <td class="mono"><strong>0.650</strong></td>
+              <td class="mono"><strong>0.696</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card highlight" style="padding: 24px;">
+        <h3>Cost &amp; Hardware Comparison</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+          <div>
+            <div class="stat-val good">$0.002</div>
+            <div class="stat-label">WhyWrong Cost / 1k Queries</div>
+          </div>
+          <div>
+            <div class="stat-val warn">$1.15</div>
+            <div class="stat-label">Frontier LLM API / 1k Queries</div>
+          </div>
+        </div>
+        
+        <h4 style="font-size:18px; margin-bottom:10px;">Production Economics (1M queries/mo)</h4>
+        <ul style="font-size:14px; line-height:1.7; color:var(--ink-muted); padding-left:18px;">
+          <li><strong>Frontier API (Claude Sonnet):</strong> $1,153.90 / month + cloud latency &amp; rate limits.</li>
+          <li><strong>Frontier API (Claude Haiku):</strong> $576.90 / month + network round trips.</li>
+          <li><strong>WhyWrong (Commodity vCPU):</strong> <strong>$2.18 / month</strong> on a $5/mo shared VPS.</li>
+        </ul>
+        <div style="margin-top:16px; padding:12px; background:rgba(61,220,151,0.1); border-radius:8px; border:1px solid rgba(61,220,151,0.25);">
+          <p style="color:var(--good); font-size:14px; font-weight:600;">
+            264× Lower Cost · 100% Data Privacy · Offline Capable
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>Measured on single core vCPU. Full metric logs stored in results/metrics.json.</div>
+    <div>Benchmark Results</div>
+  </div>
+</section>
+
+<!-- SLIDE 6: Failure Analysis & Future Directions -->
+<section class="slide">
+  <div class="slide-header">
+    <div class="brand">Why<span>Wrong</span></div>
+    <span class="badge">Honest Engineering & Roadmap</span>
+    <div class="slide-counter">06 / 06</div>
+  </div>
+
+  <div class="content">
+    <h2>Failure Analysis &amp; Product Roadmap</h2>
+    <p class="sub" style="margin-bottom: 30px;">
+      A credible machine learning submission analyzes where the system struggles. We cataloged held-out failure cases to drive our next architectural iteration.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Observed Failure Modes</h3>
+        <div style="margin-bottom: 20px;">
+          <h4 style="font-size:18px; color:var(--bad);">1. Diagram &amp; Visual Dependency</h4>
+          <p style="font-size:14.5px;">
+            Questions requiring unrendered geometric diagrams or number-line intervals cause text-only embeddings to misclassify procedural errors.
+          </p>
+        </div>
+        <div>
+          <h4 style="font-size:18px; color:var(--warn);">2. Overlapping Distractor Misconceptions</h4>
+          <p style="font-size:14.5px;">
+            Certain incorrect options are mathematically consistent with two distinct misconception labels. Forcing a greedy top-1 prediction leads to arbitrary selection.
+          </p>
+        </div>
+      </div>
+
+      <div class="card highlight">
+        <h3>Development Roadmap</h3>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <h4 style="font-size:18px; color:var(--accent-light);">1. Interactive Disambiguation Dialogues</h4>
+            <p style="font-size:14.5px;">
+              When top candidates have overlapping confidence scores, prompt the student with one diagnostic clarifying question instead of guessing.
+            </p>
+          </div>
+          <div>
+            <h4 style="font-size:18px; color:var(--accent-light);">2. Curriculum-Aware Adaptive Sequencing</h4>
+            <p style="font-size:14.5px;">
+              Feed live misconception state directly into knowledge-tracing engines to dynamically build customized problem progression paths.
+            </p>
+          </div>
+          <div>
+            <h4 style="font-size:18px; color:var(--accent-light);">3. Cross-Discipline Taxonomy Scaling</h4>
+            <p style="font-size:14.5px;">
+              Expand the bounded retrieval architecture to physics problem-solving, grammar rules, and introductory Python programming.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <div>WhyWrong: Transforming student errors into actionable learning signal.</div>
+    <div>Future Roadmap</div>
+  </div>
+</section>
+
+</body>
+</html>

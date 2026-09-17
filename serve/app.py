@@ -219,10 +219,18 @@ if WEB.exists():
             sub_f = ROOT.parent / "submission" / "whywrong.html"
             if sub_f.exists():
                 return FileResponse(str(sub_f))
-        if page == "slides":
+        if page in {"slides"}:
             slides_f = ROOT.parent / "submission" / "slides.html"
             if slides_f.exists():
                 return FileResponse(str(slides_f))
+        if page in {"deck", "presentation"}:
+            deck_f = ROOT.parent / "submission" / "presentation_deck.html"
+            if deck_f.exists():
+                return FileResponse(str(deck_f))
+        if page in {"presentation.pdf", "deck.pdf", "WhyWrong_Presentation.pdf"}:
+            pdf_f = ROOT.parent / "submission" / "WhyWrong_Presentation.pdf"
+            if pdf_f.exists():
+                return FileResponse(str(pdf_f), media_type="application/pdf", filename="WhyWrong_Presentation.pdf")
         f = WEB / f"{page}.html"
         if f.exists():
             return FileResponse(str(f))
