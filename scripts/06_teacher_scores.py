@@ -1,6 +1,6 @@
 """Run the 7B LoRA teacher over stage-1 candidates and cache its scores.
 
-These soft scores -- not the hard gold labels -- are what the 22M student learns
+These soft scores (rather than hard gold labels) are what the 22M student learns
 from in script 07. The teacher's *relative ordering of near-miss candidates* carries
 far more signal than a one-hot label, which is why distillation recovers most of a
 7B model's ranking ability at 1/300th the parameters.

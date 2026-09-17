@@ -244,17 +244,17 @@
     "cold_start_s": 0.304
   },
   "cost": {
-    "assumption": "1,000,000 diagnoses/month. Ours: measured p50 1047.21 ms of one vCPU at $0.0075/vCPU-hour. Frontier: prompt length measured on this exact task (537 input + 8 output tokens per diagnosis) priced at Anthropic's published list rates. Frontier accuracy and latency were NOT measured -- no API key.",
+    "assumption": "1,000,000 diagnoses/month. Ours: measured p50 1047.21 ms of one vCPU at $0.0075/vCPU-hour. Frontier: prompt length measured on this exact task (537 input + 8 output tokens per diagnosis) priced at Anthropic's published list rates. Frontier accuracy and latency were not measured (no API key configured).",
     "rows": [
       {
-        "name": "Frontier API \u2014 Claude Sonnet 5",
+        "name": "Frontier API: Claude Sonnet 5",
         "per_1k": "$1.15",
         "monthly": "$1,153.90",
         "basis": "measured tokens x published list price",
         "shipped": false
       },
       {
-        "name": "Frontier API \u2014 Claude Haiku 4.5",
+        "name": "Frontier API: Claude Haiku 4.5",
         "per_1k": "$0.58",
         "monthly": "$576.90",
         "basis": "measured tokens x published list price",
@@ -270,5 +270,5 @@
     ]
   },
   "bundle_mb": 66.6,
-  "footnote": "Every filled cell was measured on the frozen test split above; blank cells say 'not measured' rather than being estimated. The shipped row is the INT8 ONNX artifact this site serves, measured through the same code path as your requests \u2014 not the fp32 training checkpoint."
+  "footnote": "Every filled cell was measured on the frozen test split above; blank cells say 'not measured' rather than being estimated. The shipped row is the INT8 ONNX artifact this site serves, measured through the same code path as your requests, rather than the fp32 training checkpoint."
 }

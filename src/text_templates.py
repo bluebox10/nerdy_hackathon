@@ -1,6 +1,6 @@
 """Single source of truth for how a query and a misconception become text.
 
-Every stage -- baselines, bi-encoder, reranker, distillation, serving -- imports
+Every stage (baselines, bi-encoder, reranker, distillation, serving) imports
 these. If the template drifts between training and serving the whole thing is
 silently broken, so it lives in exactly one place.
 """

@@ -4,7 +4,7 @@ A failure gallery is only credible if the explanation of each case is right. Gue
 "ambiguous distractor" for everything is worse than no gallery. This computes signals --
 how close the prediction is to the gold label in embedding space, whether other labels
 in the taxonomy are near-duplicates of gold, whether the question needs an asset we do
-not have -- and proposes a category. The prose note is still written by hand against
+not have, and proposes a category. The prose note is still written by hand against
 these signals; the script never invents one.
 """
 import json, re, sys

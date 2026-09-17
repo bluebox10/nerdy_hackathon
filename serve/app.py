@@ -152,8 +152,8 @@ def next_problem(after_misconception_id: int, exclude_question_id: int = -1):
 
     Not 'the next item in the list'. We choose the demo problem whose own gold
     misconception sits closest to the one just diagnosed, so the follow-up actually
-    probes whether that specific broken rule is still there -- which is the whole
-    point of diagnosing it rather than just scoring the answer.
+    probes whether that specific broken rule is still there, which is the primary
+    goal of diagnosing rather than just scoring the answer.
     """
     if engine is None:
         raise HTTPException(503, "engine not loaded")

@@ -3,7 +3,7 @@
 Primary metric is MAP@25 (the official Eedi/Kaggle metric). We also report
 Recall@k and top-1 accuracy, and every metric is additionally broken out on the
 `unseen` slice: test queries whose gold misconception never appears in training.
-That slice is the one that actually matters -- 58% of the taxonomy is never seen.
+That slice is the one that actually matters: 58% of the taxonomy is never seen.
 """
 from __future__ import annotations
 import json

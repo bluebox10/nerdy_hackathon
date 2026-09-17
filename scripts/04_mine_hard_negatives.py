@@ -27,7 +27,7 @@ D = m.encode([doc_text(n) for n in misc["misconception_name"]], batch_size=256,
              normalize_embeddings=True, convert_to_numpy=True, show_progress_bar=False)
 
 # Negatives are mined per *misconception*, from the queries that carry it, plus from
-# the misconception's own text -- so classes with zero real queries still get negatives.
+# the misconception's own text, so classes with zero real queries still get negatives.
 per_mid = {}
 for _, r in train.iterrows():
     per_mid.setdefault(int(r["misconception_id"]), []).append(BGE_QUERY_INSTRUCTION + query_text(r))

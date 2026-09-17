@@ -1,8 +1,8 @@
 """Stage 1 of the retriever: contrastive fine-tune of bge-small-en-v1.5 (33M).
 
 Uses CachedMultipleNegativesRankingLoss (GradCache) so the effective contrastive
-batch -- i.e. the number of in-batch negatives, which is what actually drives
-retrieval quality -- can be pushed far past what fits in activation memory.
+batch (the number of in-batch negatives that drives
+retrieval quality) can be pushed far past what fits in activation memory.
 Optionally mixes in synthetic long-tail pairs and mined hard negatives.
 """
 import argparse, json, math, os, random, sys, time
@@ -70,7 +70,7 @@ if args.synth:
         s = pd.concat(frames, ignore_index=True)
         s = s.drop_duplicates(subset=["misconception_id", "question", "incorrect"])
         if args.synth_cap_per_mid:
-            # NB: groupby.apply drops the grouping column on pandas 3.x -- shuffle+head
+            # NB: groupby.apply drops the grouping column on pandas 3.x: shuffle+head
             # gives the same random per-misconception cap and keeps misconception_id.
             s = (s.sample(frac=1.0, random_state=args.seed)
                    .groupby("misconception_id", sort=False)

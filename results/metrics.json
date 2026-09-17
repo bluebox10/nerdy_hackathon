@@ -617,7 +617,7 @@
     "n_params_M": 7620,
     "gpu_seconds": 381.4,
     "gpu_ms_per_query": 432.4,
-    "runtime": "1x A100 (bf16) -- never deployed, exists to be distilled"
+    "runtime": "1x A100 (bf16): teacher model for distillation"
   },
   {
     "name": "shipped_onnx_k0:test",

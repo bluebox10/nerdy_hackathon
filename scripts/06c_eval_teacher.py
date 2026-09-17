@@ -1,6 +1,6 @@
 """Evaluate the 7B LoRA teacher on a held-out split.
 
-The teacher is never deployed -- it exists to be distilled. But we need its accuracy to
+The teacher is never deployed; it exists to be distilled. But we need its accuracy to
 state the distillation gap honestly: "the 22M student gives up N points against its
 teacher and runs on a CPU" is only meaningful if N was measured, not assumed.
 """
@@ -74,4 +74,4 @@ print(fmt(f"{args.name} [{args.split}]", res))
 save(ROOT / "results/metrics.json", f"{args.name}:{args.split}", res, extra=dict(
     split=args.split, base=args.base, topk=args.topk, n_params_M=7620,
     gpu_seconds=round(dt, 1), gpu_ms_per_query=round(1000 * dt / len(df), 1),
-    runtime="1x A100 (bf16) -- never deployed, exists to be distilled"))
+    runtime="1x A100 (bf16): teacher model for distillation"))

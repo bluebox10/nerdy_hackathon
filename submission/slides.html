@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>WhyWrong — Presentation Deck (Nerdy AI Hackathon)</title>
+<title>WhyWrong: Project Presentation Deck</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
 :root {
@@ -69,7 +69,7 @@ footer {
 
 <header>
   <div class="brand">Why<span>Wrong</span></div>
-  <span class="badge">Nerdy AI Hackathon Challenge · Demo Presentation</span>
+  <span class="badge">Project Presentation Deck</span>
   <div id="slide-num" style="color:var(--ink3); font-size:13px; font-weight:600;">1 / 5</div>
 </header>
 
@@ -77,20 +77,20 @@ footer {
 
   <!-- SLIDE 1 -->
   <div class="slide active" id="s1">
-    <h2>Every AI tutor says you're wrong.<br>WhyWrong tells you <span style="color:var(--accent)">exactly why</span>.</h2>
-    <p class="sub">Detecting wrongness is easy. Diagnosing the underlying misconception is what transforms practice.</p>
+    <h2>WhyWrong: Mathematics Misconception Diagnosis</h2>
+    <p class="sub">Pinpoint the specific misconception behind incorrect answers to deliver targeted feedback.</p>
     <div class="grid-2">
       <div class="card">
-        <h3>Generic AI Tutor</h3>
-        <p style="font-size:15px; margin-bottom:12px;">Student submits: <code class="mono">7/12 − 3/12 = 4/24</code></p>
-        <p style="color:var(--bad); font-weight:600; margin-bottom:8px;">❌ "That's not quite right, try again!"</p>
-        <p style="font-size:13.5px; color:var(--ink2);">The student repeats the same broken rule, becomes frustrated, and disengages.</p>
+        <h3>Generic Math Interface</h3>
+        <p style="font-size:15px; margin-bottom:12px;">Student submits: <code class="mono">7/12 - 3/12 = 4/24</code></p>
+        <p style="color:var(--bad); font-weight:600; margin-bottom:8px;">❌ "That is not quite right, try again!"</p>
+        <p style="font-size:13.5px; color:var(--ink2);">The student repeats the same broken rule without insight into the underlying error.</p>
       </div>
       <div class="card highlight">
-        <h3>WhyWrong Engine</h3>
+        <h3>WhyWrong Diagnostic Engine</h3>
         <p style="font-size:15px; margin-bottom:12px;">Immediate diagnosis in <span class="pill good">380 ms</span> on <span class="pill">1 CPU core</span></p>
-        <p style="color:var(--good); font-weight:600; margin-bottom:8px;">🎯 #172: Subtracts numerators AND denominators</p>
-        <p style="font-size:13.5px; color:var(--ink2);">Returns a 3-rung Socratic ladder whose first step is a clarifying question, not a spoiled answer.</p>
+        <p style="color:var(--good); font-weight:600; margin-bottom:8px;">🎯 #172: Subtracts numerators and denominators</p>
+        <p style="font-size:13.5px; color:var(--ink2);">Returns a 3-step Socratic ladder starting with a clarifying question to guide self-correction.</p>
       </div>
     </div>
   </div>
@@ -120,11 +120,11 @@ footer {
 
   <!-- SLIDE 3 -->
   <div class="slide" id="s3">
-    <h2>The Architecture: The Finite Taxonomy Bet</h2>
-    <p class="sub">Heavy GPU training done offline once. Production is a fast, cheap CPU lookup.</p>
+    <h2>Architecture &amp; Distillation Pipeline</h2>
+    <p class="sub">Heavy model distillation done offline. Production serving is a lightweight CPU lookup.</p>
     <div class="grid-2">
       <div class="card">
-        <h3>Offline Pipeline (Our A100s — Run Once)</h3>
+        <h3>Offline Pipeline (GPU Training)</h3>
         <ul style="font-size:13.5px; color:var(--ink2); line-height:1.7; padding-left:18px;">
           <li><strong>Synthetic Augmentation:</strong> Qwen2.5-7B generated 17,490 questions for 1,498 zero-shot misconceptions.</li>
           <li><strong>Retriever Fine-Tuning:</strong> BGE-small (33M) with hard-negative mining.</li>
@@ -133,7 +133,7 @@ footer {
         </ul>
       </div>
       <div class="card highlight">
-        <h3>Production (1 CPU Core — Zero GPUs)</h3>
+        <h3>Production Serving (1 CPU Core)</h3>
         <ul style="font-size:13.5px; color:var(--ink2); line-height:1.7; padding-left:18px;">
           <li><strong>Bi-Encoder INT8 ONNX:</strong> 2,587 &times; 384 matrix NumPy matmul (3.9 MB).</li>
           <li><strong>Cross-Encoder INT8 ONNX:</strong> Reranks top-25 down to top-1.</li>
@@ -146,50 +146,50 @@ footer {
 
   <!-- SLIDE 4 -->
   <div class="slide" id="s4">
-    <h2>Proven Benchmark &amp; 264× Cost Advantage</h2>
-    <p class="sub">Evaluated on the frozen NeurIPS 2024 Eedi competition dataset (882 held-out test queries).</p>
+    <h2>Evaluation &amp; Cost Efficiency</h2>
+    <p class="sub">Evaluated on the held-out NeurIPS 2024 Eedi competition dataset (882 test queries).</p>
     <div class="grid-3">
       <div class="card">
         <div class="stat-val">0.261</div>
-        <div class="stat-label">MAP@25 Score (vs 0.153 Off-the-Shelf Baseline)</div>
+        <div class="stat-label">MAP@25 Score (vs 0.153 baseline)</div>
       </div>
       <div class="card highlight">
         <div class="stat-val">264×</div>
-        <div class="stat-label">Cheaper than Frontier LLM APIs ($0.002 vs $1.15 / 1k)</div>
+        <div class="stat-label">Cost Advantage vs Frontier APIs ($0.002 vs $1.15 / 1k)</div>
       </div>
       <div class="card">
         <div class="stat-val">380 ms</div>
-        <div class="stat-label">p50 CPU Latency (No GPU, No Cloud Network Lag)</div>
+        <div class="stat-label">p50 CPU Latency (Local Inference)</div>
       </div>
     </div>
     <div class="card" style="margin-top:20px;">
       <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
-        <strong>The Key Insight:</strong> Frontier LLMs are too slow and expensive to evaluate in the live interactive hot path of every student response. WhyWrong runs the big model once in the kitchen — so serving is an instant, deterministic lookup at the table.
+        <strong>Key Architectural Finding:</strong> Offline precomputation of pedagogical hints over a bounded 2,587-class taxonomy eliminates live LLM latency, enabling sub-400ms local CPU inference at a fraction of cloud API costs.
       </p>
     </div>
   </div>
 
   <!-- SLIDE 5 -->
   <div class="slide" id="s5">
-    <h2>Honest Failure Analysis &amp; What's Next</h2>
-    <p class="sub">A real engineering demo inspects where it fails — and how to fix it.</p>
+    <h2>Failure Analysis &amp; Next Steps</h2>
+    <p class="sub">Analysis of held-out test cases where predictions diverged from gold labels.</p>
     <div class="grid-2">
       <div class="card">
-        <h3>Where It Fails Today</h3>
+        <h3>Current Failure Modes</h3>
         <p style="font-size:13.5px; color:var(--ink2); line-height:1.6; margin-bottom:8px;">
           <strong>1. Missing Visuals:</strong> Questions requiring unrendered diagrams (e.g. tick marks on number lines).
         </p>
         <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
-          <strong>2. Ambiguous Distractors:</strong> Two misconceptions consistent with one student choice.
+          <strong>2. Ambiguous Distractors:</strong> Two distinct misconceptions consistent with one student choice.
         </p>
       </div>
       <div class="card highlight">
-        <h3>What We Build Next</h3>
+        <h3>Next Iteration</h3>
         <p style="font-size:13.5px; color:var(--ink2); line-height:1.6; margin-bottom:8px;">
-          <strong>Targeted Disambiguation:</strong> Rather than guess between near-twin labels, prompt the student with one diagnostic question.
+          <strong>Targeted Disambiguation:</strong> Rather than guessing between overlapping labels, prompt the student with one diagnostic follow-up question.
         </p>
         <p style="font-size:13.5px; color:var(--ink2); line-height:1.6;">
-          <strong>Beyond Math:</strong> Subject-agnostic taxonomy architecture applicable to science, grammar, and coding.
+          <strong>Cross-Discipline Taxonomy:</strong> Generalize the taxonomy retrieval architecture to science, grammar, and computer science.
         </p>
       </div>
     </div>

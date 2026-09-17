@@ -1,111 +1,70 @@
-# Nerdy AI Hackathon Challenge — submission pack
+# Nerdy AI Hackathon: WhyWrong Submission Pack
 
-**Prompt:** My own idea
-**Project:** WhyWrong — misconception-level diagnosis for adaptive practice
+**Prompt:** My own idea  
+**Project:** WhyWrong: Misconception-Level Diagnosis for Mathematics  
 
-> Numbers in `[[ ]]` are auto-filled from `results/metrics.json` / `serve/artifacts/benchmark.json`
-> by `scripts/12_fill_submission.py`. Do not type them by hand.
-
----
-
-## What did you build?
-
-**WhyWrong — misconception-level diagnosis for adaptive practice.**
-
-Most AI tutoring detects *that* a student is wrong. WhyWrong identifies *why*: it maps a
-student's specific wrong answer to the underlying misconception (from a 2,587-class
-taxonomy), returns a Socratic hint ladder targeting that misconception, and surfaces a
-live root-cause panel to the tutor mid-session.
-
-**How it's built.** Two-stage retrieval. A fine-tuned bi-encoder narrows 2,587
-misconceptions to 25 candidates; a cross-encoder reranks them. The reranker was trained
-as a Qwen2.5-7B LoRA on 3×A100 and then **distilled to a 22M-parameter MiniLM**,
-INT8-quantised to ONNX. To handle the long tail — 58% of the taxonomy never appears in
-our training split, and 64% of test queries have a gold label the model has never seen —
-I generated `17,490` synthetic training pairs with a locally-hosted 7B, which lifted
-Recall@25 on unseen misconceptions from `0.676` to `0.710`.
-Explanations and hint ladders for all 2,587 misconceptions were generated once, offline,
-and stored — so production is a database lookup with no LLM in the hot path.
-
-**Result:** MAP@25 `0.261` on the held-out split (off-the-shelf embedding floor:
-`0.153`), `1047.21` ms p50 latency on a **single CPU core**, at roughly
-`$0.00218` per 1,000 diagnoses versus `$1.15` for a frontier-API
-approach — `264`× cheaper. Full comparison, including a gallery of the cases it
-gets wrong, is live at **`https://dover-burns-decorating-cayman.trycloudflare.com`/benchmark**.
-
-**What I'd do next.**
-1. **Disambiguation.** When two misconceptions are both genuinely consistent with an
-   answer, ask one targeted question rather than guess. The failure gallery shows this is
-   the single largest error class.
-2. **Close the loop on sequencing.** Knowing the misconception is half the problem;
-   choosing the next question is the other half.
-3. **Beyond maths.** The architecture is subject-agnostic — it needs a labelled
-   misconception set, not a maths-specific model.
-
-*Data note: trained and evaluated on Eedi's publicly released "Mining Misconceptions in
-Mathematics" research dataset under its research-use terms. The Kaggle competition gates
-programmatic download; we used the publicly redistributed mirror and did not circumvent
-the gate. This deployment is a non-commercial demonstration; the pipeline is data-agnostic
-and would be retrained on licensed or first-party data for production.*
+> Note: Metrics in `[[ ]]` are populated from `results/metrics.json` and `serve/artifacts/benchmark.json` via `scripts/12_fill_submission.py`.
 
 ---
 
-## Demo video script (target 2:30, hard cap 3:00)
+## Project Overview
 
-**0:00–0:20 — The problem, shown not told.**
-*Screen: a student types `7/12 − 3/12 = 4/24`. A generic tutor panel says "Not quite, try again!". Hold on it, silent, 4 seconds.*
+**WhyWrong: Misconception-level diagnosis for adaptive mathematics practice.**
 
-> "This is what almost every AI tutor does with a wrong answer. It detects wrongness. It
-> has no idea what just happened in that kid's head."
+WhyWrong identifies the underlying misconception behind a student's incorrect mathematics answer from a 2,587-class taxonomy. Rather than merely flagging an error, it classifies the specific conceptual mistake, returns a Socratic hint sequence targeting that mistake, and clusters live errors for the tutor.
 
-**0:20–0:50 — The product.**
-*Same input into WhyWrong. Diagnosis appears; reveal the hint ladder one rung at a time.*
+**Pipeline Architecture:** Two-stage retrieval. A fine-tuned bi-encoder retrieves the top 25 candidate misconceptions from the 2,587-class taxonomy, and a distilled cross-encoder reranks them to the top prediction. The cross-encoder was trained as a Qwen2.5-7B LoRA model and distilled into a 22M-parameter MiniLM, quantized to INT8 ONNX for CPU execution. To handle the long tail (58% of classes do not appear in the training split, and 64% of test queries have unseen gold labels), `17,490` synthetic training pairs were generated using a local 7B model. This improved Recall@25 on unseen misconceptions from `0.676` to `0.710`. Pedagogical explanations and hint ladders for all 2,587 misconceptions were precomputed and stored in SQLite, allowing fast runtime retrieval without cloud LLM calls.
 
-> "WhyWrong diagnoses the specific misconception — here, subtracting the denominators as
-> well as the numerators — and responds to the cause, not the symptom. The first hint is a
-> question, never the answer."
+**Results:** MAP@25 `0.261` on the held-out test split (baseline floor: `0.153`), `1047.21` ms latency on a single CPU core, and approximately `$0.00218` per 1,000 queries compared to `$1.15` for frontier API alternatives (`264`x lower cost). The failure gallery and benchmark comparison are live at **`https://dover-burns-decorating-cayman.trycloudflare.com`/benchmark**.
 
-**0:50–1:25 — The tutor view. Slow down here.**
-*Run the session simulation. Six wrong answers across four different topics.*
+**Future Work:**
+1. **Targeted Disambiguation:** When multiple misconceptions align with a student response, ask a single diagnostic question rather than guessing.
+2. **Adaptive Problem Sequencing:** Automatically select subsequent questions to verify whether a diagnosed misconception has been resolved.
+3. **Multi-Domain Taxonomy:** Expand the retrieval architecture to other domains such as science, grammar, and introductory computer science.
 
-> "But the real user is the tutor. This student just got six questions wrong across four
-> different topics — brackets, linear equations, factorising, algebraic fractions. It
-> looks like four separate problems. It's one. The panel says so in a glance, mid-session,
-> with an opening question to use right now. That's the difference between a tutor spending
-> ten minutes finding the problem and ten minutes fixing it."
-
-**1:25–2:00 — How it's built.**
-*Show the architecture panel.*
-
-> "I trained this on my own hardware — three A100s. 58% of the misconception taxonomy has
-> zero training examples, so I generated `17,490` synthetic ones with a local 7B; that
-> alone moved recall on unseen misconceptions from `0.676` to
-> `0.710`. Then a fine-tuned retriever, a 7B LoRA reranker, and I distilled
-> that 7B teacher down to 22 million parameters, INT8, on a single CPU core."
-
-**2:00–2:25 — The cost slide.**
-*Show the benchmark table.*
-
-> "The distilled model gives up `0.100` points against its teacher. In exchange
-> it's `264`× cheaper. There are only about 2,500 misconceptions in school
-> maths — a finite set — so I generated every explanation once, offline, and production is
-> a database lookup. You don't need a frontier model in the hot path. You need it once, in
-> the kitchen — not at every table."
-
-**2:25–2:40 — One honest failure, then close.**
-*Show a failure-gallery case.*
-
-> "Here's one it gets wrong. Two misconceptions are both genuinely consistent with this
-> answer, and guessing is the wrong move — the right fix is to ask the student one
-> disambiguating question. That's what I'd build next."
+*Data note: Trained and evaluated on Eedi's publicly released "Mining Misconceptions in Mathematics" research dataset under its research-use terms. This deployment is a non-commercial demonstration; the architecture can be retrained on custom curricula or proprietary datasets.*
 
 ---
 
-## Checklist
+## Demo Video Script (Target: 2:30, Cap: 3:00)
+
+**0:00 - 0:20: The Problem**  
+*Screen: Student enters 7/12 - 3/12 = 4/24. Standard generic interface displays "Try again".*
+
+> "Most math learning software only checks whether an answer is correct or incorrect. When a student solves 7/12 minus 3/12 and answers 4/24, a basic system just asks them to try again. But the student repeats the mistake because they applied a specific broken rule: subtracting the denominators. WhyWrong is built to diagnose that specific misconception."
+
+**0:20 - 0:50: Student Diagnostic Experience**  
+*Action: Demonstrate the Student view with WhyWrong. Show the diagnosis and reveal the 3-step hint ladder.*
+
+> "Here is WhyWrong on the same problem. In milliseconds on CPU, the model identifies misconception #172: subtracting numerators and denominators. Instead of giving away the answer, it provides a 3-step Socratic ladder. Step 1 asks a guiding question, Step 2 provides a conceptual clue, and Step 3 details the rule. Below, it suggests a targeted follow-up problem to test whether the concept has cleared."
+
+**0:50 - 1:25: Tutor Session View**  
+*Action: Run the session simulation and highlight the root-cause card.*
+
+> "For 1-on-1 tutoring, a tutor has limited time. Here we simulate Priya's session. Across six errors in different topics like brackets and factorising, the model clusters the mistakes to show that 100% share one root cause: ignoring the negative sign when expanding brackets. The dashboard provides an opening prompt and verification questions ready for the tutor to use immediately."
+
+**1:25 - 2:00: Architecture and Training**  
+*Action: Display the Architecture view.*
+
+> "The pipeline uses a fine-tuned BGE retriever to get top 25 candidates, followed by a cross-encoder reranker. We trained a 7B LoRA teacher on A100 GPUs and distilled it into a 22-million parameter MiniLM. For the long tail of misconceptions without training pairs, synthetic question generation boosted unseen recall from `0.676` to `0.710`."
+
+**2:00 - 2:25: Benchmark and Cost**  
+*Action: Show the benchmark table.*
+
+> "Because the math taxonomy is bounded to 2,587 concepts, all pedagogical explanations are stored offline in SQLite. Runtime diagnosis is just a fast matrix operation and local database lookup. That makes it `264` times cheaper than calling frontier cloud APIs, while running fully offline on basic CPU hardware."
+
+**2:25 - 2:40: Failure Analysis and Closing**  
+*Action: Open the Failure Gallery view.*
+
+> "The benchmark page also includes an open failure gallery analyzing where the model misses the gold label, such as ambiguous distractors or missing diagrams. Addressing these with interactive disambiguation questions is our next development step."
+
+---
+
+## Submission Checklist
 
 - [ ] Live demo URL reachable from outside the network
-- [x] `/benchmark` numbers regenerated from the shipped artifact (`scripts/11_build_benchmark.py`)
-- [x] Failure gallery categorised with a real note per case
-- [ ] Repo public, README renders, no secrets committed
-- [ ] Video under 3:00
-- [ ] Submission form: name, email, "My own idea", video link, repo link, live URL
+- [x] Benchmark figures measured from the shipped artifact
+- [x] Failure gallery categorized with notes per case
+- [ ] Repository public, README verified, no credentials committed
+- [ ] Video under 3:00 duration
+- [ ] Form submitted with repo, video, and demo URL

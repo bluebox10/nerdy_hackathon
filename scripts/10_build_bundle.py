@@ -16,7 +16,7 @@ import re as _re
 
 # Many Eedi questions reference a diagram we do not have the asset for, or embed a LaTeX
 # table. Either is unanswerable for someone reading the demo, so they are excluded from
-# the demo pool -- they stay in the eval split, where they are scored like everything else.
+# the demo pool; they stay in the eval split, where they are scored like everything else.
 _NEEDS_ASSET = _re.compile(r"!\[|\\begin\{tabular\}|\\begin\{array\}")
 
 
@@ -59,11 +59,11 @@ for mid, name in MID2NAME.items():
     if int(mid) not in seen:
         rows.append((int(mid), name, name, "",
                      json.dumps(["Talk me through your first step on this one.",
-                                 "Look again at the operation you applied — does it do what you expect?",
+                                 "Look again at the operation you applied: does it do what you expect?",
                                  f"The rule being missed here: {name}."]),
                      json.dumps(["Try a simpler version of the same question.",
                                  "Explain the rule back to me in your own words."]),
-                     "Talk me through how you got that — what was your first step?", "Mathematics", "fallback"))
+                     "Talk me through how you got that: what was your first step?", "Mathematics", "fallback"))
 
 con.executemany("INSERT INTO explanations VALUES (?,?,?,?,?,?,?,?,?)", rows)
 con.commit()
@@ -116,7 +116,7 @@ for e in examples:
 (ART / "examples.json").write_text(json.dumps(picked, indent=1))
 # The carousel is a curated 60. The PROBE pool is every demoable question we have, so
 # "next problem, chosen to probe this misconception" can actually find a same-family
-# follow-up instead of shrugging -- a 60-item pool spread over 29 subjects almost never can.
+# follow-up instead of shrugging: a 60-item pool spread over 29 subjects almost never can.
 (ART / "probe_pool.json").write_text(json.dumps(examples, indent=1))
 print(f"probe pool: {len(examples)} questions covering "
       f"{len({e['gold_misconception_id'] for e in examples})} misconceptions -> probe_pool.json")
@@ -128,7 +128,7 @@ print(f"examples: {len(picked)} multiple-choice items across "
 # A believable struggling-student session. We pick a misconception whose real questions
 # span SEVERAL different topics, because that is exactly the case where the tutor panel
 # earns its place: the student looks like they are failing four separate subjects, and
-# the panel shows it is one root cause. One off-cause error is included -- real sessions
+# the panel shows it is one root cause. One off-cause error is included: real sessions
 # are not monocausal, and a panel that only ever shows 100% concentration is a lie.
 demo_pool = pool[pool.question.map(demoable)]
 counts = demo_pool.groupby("misconception_id").agg(n=("qid", "size"), topics=("subject", "nunique"))

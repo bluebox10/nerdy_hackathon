@@ -1,8 +1,8 @@
 """Export the shipped models to INT8 ONNX and build the serving bundle.
 
 Everything the production box needs ends up in serve/artifacts/:
-  bi_encoder/        INT8 ONNX bi-encoder (33M)  -- 2,587 candidates -> 25
-  cross_encoder/     INT8 ONNX distilled reranker (22M) -- 25 -> 1
+  bi_encoder/        INT8 ONNX bi-encoder (33M): 2,587 candidates -> 25
+  cross_encoder/     INT8 ONNX distilled reranker (22M): 25 -> 1
   misc_emb.npy       2,587 x 384 float32 = 3.8 MB. A numpy matmul, not a vector DB.
   whywrong.sqlite    precomputed explanation + hint ladder per misconception
 No GPU, no LLM, no network call in the hot path.

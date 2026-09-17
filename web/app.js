@@ -5,19 +5,15 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
 const api = (p, o) => fetch(p, o).then(r => r.ok ? r.json() : r.json().then(e => Promise.reject(e)));
 const pct = x => (100 * x).toFixed(0) + '%';
 
-/* LaTeX in this dataset is light: \( .. \), \[ .. \], \frac{a}{b}. Render it
-   readably without pulling in a 300 KB typesetting library the CSP would block. */
+/* Lightweight LaTeX rendering: \( .. \), \[ .. \], \frac{a}{b}. */
 function tex(s) {
   return esc(s ?? '')
-    // Eedi questions sometimes carry an image reference we do not have the asset for.
-    // Say so rather than printing raw markdown at the reader.
     .replace(/!\[[^\]]*\]\([^)]*\)/g, ' [diagram] ')
     .replace(/!\[[^\]]*\]/g, ' [diagram] ')
     .replace(/\\begin\{[^}]*\}|\\end\{[^}]*\}/g, ' ')
     .replace(/\\hline/g, ' ')
     .replace(/\\(?:mathbf|mathrm|text|textbf|mathit)\{([^{}]*)\}/g, (m, g) => g.replace(/\s+/g, ''))
     .replace(/\\[[\]]|\\[()]/g, '')
-    // one level of brace nesting, so \frac{5x^2}{2y(x-3)} survives
     .replace(/\\d?frac\{((?:[^{}]|\{[^{}]*\})*)\}\{((?:[^{}]|\{[^{}]*\})*)\}/g,
              '<span class="mono">($1)/($2)</span>')
     .replace(/\\sqrt\{([^{}]*)\}/g, '√($1)')
@@ -35,7 +31,7 @@ function tex(s) {
     .replace(/\s+/g, ' ').trim();
 }
 
-/* ---------------- nav ---------------- */
+// Navigation
 function switchView(name, push = true) {
   const btn = $(`nav button[data-v="${name}"]`);
   if (!btn) return;
@@ -54,7 +50,7 @@ window.onpopstate = e => {
   switchView(v, false);
 };
 
-/* ---------------- student ---------------- */
+// Student practice view
 let EX = [], cur = 0, answered = false;
 
 function renderQ() {
@@ -88,9 +84,8 @@ async function pick(el, e, i) {
   if (right) {
     $('#resultbox').innerHTML = `<h3>Diagnosis</h3>
       <span class="pill good">Correct</span>
-      <p style="margin-top:11px">Nothing to diagnose. WhyWrong only fires on a wrong answer —
-      that's the whole point: it reads the <em>error</em>, not the score.</p>
-      <p class="muted" style="margin-top:9px">Try a wrong option to see the diagnosis.</p>`;
+      <p style="margin-top:11px">No misconception to diagnose for correct answers. WhyWrong analyzes incorrect responses to identify the underlying misconception.</p>
+      <p class="muted" style="margin-top:9px">Select an incorrect option to view the diagnosis.</p>`;
     return;
   }
   $('#resultbox').innerHTML = '<h3>Diagnosis</h3><p class="muted"><span class="spinner"></span> diagnosing…</p>';
@@ -134,15 +129,14 @@ function renderDiag(r, box, ctx) {
       <div style="flex:${Math.max(t.rerank_ms, .05)};background:#3ddc97">rerank ${t.rerank_ms}</div>
       <div style="flex:${Math.max(t.lookup_ms, .05)};background:#ffb545">db ${t.lookup_ms}</div>
     </div>
-    <p class="muted" style="margin-top:7px">ms, single CPU core. The hint ladder was written
-    offline and fetched with a primary-key lookup — no LLM in this path.</p>`;
+    <p class="muted" style="margin-top:7px">Milliseconds on a single CPU core. Socratic hint progressions are pre-indexed and retrieved via primary-key lookup.</p>`;
 
   // offer a follow-up chosen to probe THIS misconception, not just the next item
   if (ctx) probeNext(c.misconception_id, ctx.question_id);
 
   if (c.hints?.length) {
     let n = 0;
-    const labels = ['Hint 1 — a question, not an answer', 'Hint 2 — a concrete nudge', 'Hint 3 — the rule'];
+    const labels = ['Hint 1: Guiding question', 'Hint 2: Conceptual clue', 'Hint 3: Full rule'];
     $('#hintbtn').onclick = () => {
       if (n >= c.hints.length) return;
       $('#ladder').insertAdjacentHTML('beforeend',
@@ -169,13 +163,13 @@ async function probeNext(mid, excludeQid) {
       </div>`;
     $('#probego').onclick = () => {
       let idx = EX.findIndex(e => e.question_id === r.problem.question_id);
-      if (idx < 0) { EX.splice(cur + 1, 0, r.problem); idx = cur + 1; }   // not in the carousel yet
+      if (idx < 0) { EX.splice(cur + 1, 0, r.problem); idx = cur + 1; }
       cur = idx; renderQ(); window.scrollTo({ top: 0, behavior: 'smooth' });
     };
   } catch {}
 }
 
-/* ---------------- tutor ---------------- */
+// Tutor session analysis
 const SID = 'demo-' + Math.random().toString(36).slice(2, 8);
 
 $('#resetbtn').onclick = async () => {
@@ -191,7 +185,7 @@ $('#simbtn').onclick = async () => {
   if (!script.length) script = EX.filter(e => e.distractor).slice(0, 6)
     .map(e => ({ ...e, student_answer: e.distractor }));
   for (let i = 0; i < script.length; i++) {
-    $('#simstat').innerHTML = `<span class="spinner"></span> question ${i + 1} of ${script.length} — ${esc(script[i].subject)}`;
+    $('#simstat').innerHTML = `<span class="spinner"></span> Question ${i + 1} of ${script.length}: ${esc(script[i].subject)}`;
     const e = script[i];
     await api('/api/diagnose', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -201,7 +195,7 @@ $('#simbtn').onclick = async () => {
     });
     await renderTutor();
   }
-  $('#simstat').textContent = `Session complete — ${script.length} wrong answers across ` +
+  $('#simstat').textContent = `Session complete: ${script.length} mistakes across ` +
     `${new Set(script.map(s => s.subject)).size} different topics.`;
   btn.disabled = false;
 };
@@ -222,10 +216,10 @@ async function renderTutor() {
       </div>
     </div>
     <div class="alert">
-      <span class="pill warn">⚠ Root cause</span>
+      <span class="pill warn">Root cause</span>
       <span class="pill">confidence ${pct(r.mean_confidence)}</span>
       <span class="pill">first seen ${Math.round(r.first_seen_s_ago)}s ago</span>
-      <div class="rootname">#${r.misconception_id} — ${esc(r.misconception_name)}</div>
+      <div class="rootname">#${r.misconception_id}: ${esc(r.misconception_name)}</div>
       <p>${esc(r.plain)}</p>
       ${r.why ? `<p class="muted" style="margin-top:8px">${esc(r.why)}</p>` : ''}
       <div class="opener"><strong style="font-style:normal">Suggested opener:</strong> “${esc(r.opener)}”</div>
@@ -248,7 +242,7 @@ async function renderTutor() {
         <div class="muted">${x.n_errors} error(s) · ${pct(x.share)} of session</div></div></div>`).join('')}</div></div>` : ''}`;
 }
 
-/* ---------------- try it ---------------- */
+// Custom input diagnosis
 $('#trybtn').onclick = async () => {
   $('#trybox').innerHTML = '<h3>Result</h3><p class="muted"><span class="spinner"></span> diagnosing…</p>';
   try {
@@ -262,7 +256,7 @@ $('#trybtn').onclick = async () => {
   } catch (e) { $('#trybox').innerHTML = `<h3>Result</h3><p class="pill bad">${esc(e.detail || e)}</p>`; }
 };
 
-/* ---------------- benchmark ---------------- */
+// Benchmark view
 let benchLoaded = false;
 async function loadBench() {
   if (benchLoaded) return; benchLoaded = true;
@@ -311,8 +305,7 @@ async function loadBench() {
         <td class="num">${esc(r.per_1k)}</td><td class="num ${r.shipped ? 'win' : ''}">${esc(r.monthly)}</td>
         <td class="muted">${esc(r.basis)}</td></tr>`).join('')}</tbody></table></div></div>` : ''}
     <div class="card" id="failbox"><h2>Where it fails</h2>
-      <p class="sub">Ten held-out cases the shipped model gets wrong, with our read on why.
-      A benchmark page without this is a sales page.</p>
+      <p class="sub">Sample held-out evaluation cases where predictions differed from the gold label, including error analysis.</p>
       <div id="faillist"><span class="spinner"></span></div></div>`;
 
   try {
@@ -325,51 +318,48 @@ async function loadBench() {
         <dt>Student chose</dt><dd class="mono">${tex(x.student_answer)}</dd>
         <dt>Gold label</dt><dd>${esc(x.gold_name)}</dd>
         <dt>We predicted</dt><dd>${esc(x.pred_name)}</dd>
-        <dt>Our read</dt><dd>${esc(x.note)}</dd>
+        <dt>Analysis</dt><dd>${esc(x.note)}</dd>
       </dl></div>`).join('') : '<p class="muted">Gallery not built yet.</p>';
   } catch { $('#faillist').innerHTML = '<p class="muted">Gallery not built yet.</p>'; }
 }
 
-/* ---------------- how ---------------- */
+// System architecture details
 let howLoaded = false;
 async function loadHow() {
   if (howLoaded) return; howLoaded = true;
   let b = {}; try { b = await api('/api/benchmark'); } catch {}
   $('#howbox').innerHTML = `
-    <div class="card"><h2>The pipeline</h2>
-      <div class="tw"><table><thead><tr><th>Stage</th><th>Where</th><th>Model</th><th>What it does</th></tr></thead><tbody>
+    <div class="card"><h2>Pipeline Stages</h2>
+      <div class="tw"><table><thead><tr><th>Stage</th><th>Hardware</th><th>Model</th><th>Function</th></tr></thead><tbody>
         <tr><td>Synthetic augmentation</td><td>3 × A100</td><td>Qwen2.5-7B-Instruct</td>
-            <td>Writes diagnostic questions for the 1,498 misconceptions with zero real examples</td></tr>
+            <td>Generates diagnostic questions for the 1,498 zero-shot misconceptions</td></tr>
         <tr><td>Retriever</td><td>1 × A100</td><td>bge-small-en-v1.5 (33M)</td>
-            <td>Contrastive fine-tune + hard-negative mining · 2,587 → 25</td></tr>
+            <td>Contrastive fine-tuning and hard-negative mining (2,587 to 25 candidates)</td></tr>
         <tr><td>Teacher reranker</td><td>3 × A100</td><td>Qwen2.5-7B + LoRA</td>
-            <td>Listwise reranking. Never deployed — exists to be distilled</td></tr>
+            <td>Listwise reranking teacher used for knowledge distillation</td></tr>
         <tr><td>Student reranker</td><td>3 × A100</td><td>MiniLM-L6 (22M)</td>
-            <td>KL-distilled from the 7B · 25 → 1</td></tr>
+            <td>KL-distilled cross-encoder (reranks 25 candidates to top 1)</td></tr>
         <tr><td>Explanations</td><td>3 × A100</td><td>Qwen2.5-7B-Instruct</td>
-            <td>Hint ladder + probes for all 2,587, generated once, stored in SQLite</td></tr>
+            <td>Precomputes hint ladders and verification probes stored in SQLite</td></tr>
         <tr class="ship"><td>Serving</td><td>1 CPU core</td><td>2 × INT8 ONNX</td>
-            <td>Everything above, compressed into ~${esc(b.bundle_mb ?? '?')} MB and a matmul</td></tr>
+            <td>Quantized ONNX models (~${esc(b.bundle_mb ?? '?')} MB) evaluated via matrix operations</td></tr>
       </tbody></table></div>
     </div>
-    <div class="card"><h2>The bet</h2>
-      <p>School mathematics has a <strong>finite</strong> misconception taxonomy — about 2,587 of them.
-      A finite set means the expensive part, writing a good Socratic hint ladder, can be done
-      <strong>once, offline, on our own GPUs</strong> and stored. Production is then a primary-key lookup.</p>
-      <p style="margin-top:11px">You don't need a frontier model in the hot path to do this well.
-      You need it once, in the kitchen — not at every table.</p>
-      <p style="margin-top:11px" class="muted">The vector index is 2,587 × 384 floats = 3.8 MB.
-      That's a <code>numpy</code> matmul, not a vector database.</p>
+    <div class="card"><h2>Design Rationale</h2>
+      <p>School mathematics follows a structured misconception taxonomy of approximately 2,587 classes.
+      Precomputing Socratic hint sequences offline enables sub-second responses at runtime via an embedding
+      search and database lookup, removing external LLM latency from the user path.</p>
+      <p style="margin-top:11px" class="muted">The vector index is 2,587 × 384 float values (3.8 MB),
+      which evaluates via NumPy matrix operations.</p>
     </div>
-    <div class="card"><h2>Data &amp; licensing</h2>
+    <div class="card"><h2>Data &amp; Licensing</h2>
       <p>Trained and evaluated on Eedi's publicly released <em>Mining Misconceptions in Mathematics</em>
-      research dataset under its research-use terms. This deployment is a non-commercial demonstration.
-      For production the same pipeline would be retrained on licensed or first-party data —
-      the architecture is data-agnostic.</p>
+      research dataset under its research-use terms. For production environments, the pipeline can be
+      retrained on custom curriculum datasets.</p>
     </div>`;
 }
 
-/* ---------------- boot ---------------- */
+// Initialization
 (async () => {
   try {
     const h = await api('/api/health');

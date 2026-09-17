@@ -1,4 +1,4 @@
-"""Generate the pedagogical payload for all 2,587 misconceptions -- once, offline.
+"""Generate the pedagogical payload for all 2,587 misconceptions once offline.
 
 This is the architectural bet: school mathematics has a *finite* misconception
 taxonomy, so the expensive part (writing a good Socratic hint ladder) can be done
@@ -57,12 +57,12 @@ Produce a JSON object with exactly these keys:
 
 "plain": one sentence a tutor could say aloud describing what the student is doing wrong,
          in plain English, no jargon. Address the behaviour, never call the student wrong.
-"why": one or two sentences on WHY this is a natural mistake -- the over-generalised rule
+"why": one or two sentences on WHY this is a natural mistake (the over-generalised rule)
        or surface pattern that makes it feel right to the student.
 "hints": array of exactly 3 strings, a Socratic ladder.
          hints[0] MUST be a question that makes the student notice the problem themselves.
                   It must NOT contain the answer or the correction.
-         hints[1] a more concrete nudge, still not the answer -- point at the specific step.
+         hints[1] a more concrete nudge, still not the answer: point at the specific step.
          hints[2] the direct explanation of the correct rule.
 "probes": array of exactly 2 short diagnostic questions that separate a student who has
           cleared this misconception from one who has not. Include the expected correct answer
@@ -108,7 +108,7 @@ def normalise(o, mid, name):
     """Never ship a half-formed record: fall back to the raw label rather than a blank.
 
     A record that had to fall back is tagged generated_by="degraded:<model>" so the
-    count of genuinely-generated explanations stays honest -- crediting a boilerplate
+    count of genuinely-generated explanations stays honest, avoiding boilerplate credit
     row to the model is how a quality number quietly becomes a lie.
     """
     ok = isinstance(o, dict) and bool(str(o.get("plain", "")).strip())
@@ -125,7 +125,7 @@ def normalise(o, mid, name):
         plain=str(o.get("plain", "") or name).strip()[:500],
         why=str(o.get("why", "") or "").strip()[:600],
         hints=hints, probes=probes,
-        opener=str(o.get("opener", "") or f"Talk me through how you got that -- what was your first step?").strip()[:300],
+        opener=str(o.get("opener", "") or f"Talk me through how you got that: what was your first step?").strip()[:300],
         topic=str(o.get("topic", "") or "Mathematics").strip()[:60],
         generated_by=args.model if ok else f"degraded:{args.model}",
     )

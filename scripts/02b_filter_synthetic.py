@@ -6,7 +6,7 @@ Training on that teaches the retriever noise. The filter: embed each synthetic
 query with the *current* retriever and require the intended misconception to land
 in the top-K. Cheap, and it removes exactly the drifted cases.
 
-We report the rejection rate rather than hiding it -- it is the honest measure of
+We report the rejection rate rather than hiding it, as the honest measure of
 how good the generator actually was.
 """
 import argparse, json, sys

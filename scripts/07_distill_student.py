@@ -1,4 +1,4 @@
-"""Distil the 7B teacher into a 22M MiniLM cross-encoder -- the model we actually ship.
+"""Distil the 7B teacher into a 22M MiniLM cross-encoder (shipped runtime model).
 
 Loss = KL(student || teacher) over each 25-candidate group at temperature T, plus a
 hard-label CE term. The student never sees the 7B at inference; it just inherits its
@@ -37,7 +37,7 @@ misc = pd.read_parquet(ROOT / "data/processed/misconceptions.parquet")
 MID2NAME = dict(zip(misc["misconception_id"], misc["misconception_name"]))
 K = cands.shape[1]
 
-# The scored set is 2,647 real groups against 8,620 synthetic ones -- only 23.5% real.
+# The scored set is 2,647 real groups against 8,620 synthetic ones (only 23.5% real).
 # Distilling on that teaches the student to rank SYNTHETIC queries well, which is not the
 # distribution it is judged on. Same failure the retriever hit; same fix. Index list, so
 # oversampling costs no extra memory.

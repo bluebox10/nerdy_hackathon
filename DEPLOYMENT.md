@@ -22,7 +22,7 @@ Because WhyWrong is distilled down to INT8 ONNX and precomputed lookups, it runs
 
 ## Step 2: Deploy to a Free Cloud Host (Choose Option A or B)
 
-### Option A: Render (Easiest — 1 Click with GitHub)
+### Option A: Render (1-Click with GitHub)
 1. Go to [render.com](https://render.com) and sign in with your GitHub account.
 2. Click **New +** &rarr; **Blueprint** (or **Web Service**).
 3. Connect your `whywrong` repository.

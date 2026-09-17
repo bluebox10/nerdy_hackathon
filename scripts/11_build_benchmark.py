@@ -1,7 +1,7 @@
 """Evaluate the SHIPPED artifact and build the /benchmark payload.
 
 Deliberately evaluates serve/artifacts (INT8 ONNX, CPU, single thread) rather than
-the fp32 torch checkpoints -- the number on the page must be the number the demo
+the fp32 torch checkpoints; the number on the page must be the number the demo
 actually serves. Latency is measured request-by-request on one core.
 
 Cells we could not measure are emitted as null and render as "not measured".
@@ -52,7 +52,7 @@ bi_order = np.argsort(-sims, axis=1)[:, :50]
 bi_rank = eng.ids[bi_order]
 
 # Score the top-25 once, then derive accuracy at every k by re-ranking a prefix.
-# The cross-encoder is a full forward per candidate, so cost is linear in k -- the
+# The cross-encoder is a full forward per candidate, so cost is linear in k; the
 # accuracy/latency curve below is the actual engineering decision, not a footnote.
 KS = (5, 10, 25)
 ce_scores = None
@@ -90,7 +90,7 @@ for k in (0,) + (KS if ce_scores is not None else ()):
 
 # Choose the shipped configuration from the measured curve, by a rule stated up front:
 # maximise top-1, break ties toward lower latency. Top-1 is the right objective because
-# the product shows the tutor ONE diagnosis -- a better-ordered tail they never see is
+# the product shows the tutor ONE diagnosis, so a better-ordered tail they never see is
 # worth nothing. Reranking only earns its place if it wins on that.
 if args.shipped_k is not None:
     SHIPPED_K = args.shipped_k
@@ -100,7 +100,7 @@ else:
     SHIPPED_K = best["rerank_k"]
     ship_reason = (f"chosen by measured top-1 (max top-1, ties to fewer candidates): "
                    f"k={SHIPPED_K} at top-1 {best['top1']:.4f}")
-print(f"SHIPPED CONFIG: rerank_k={SHIPPED_K} -- {ship_reason}")
+print(f"SHIPPED CONFIG: rerank_k={SHIPPED_K}: {ship_reason}")
 final_rank = rank_with_k(SHIPPED_K)
 
 gold = df["misconception_id"].tolist()
@@ -175,7 +175,7 @@ ours_per_1k = 1000 * (shipped_p50 / 1000.0) / 3600.0 * VCPU_USD_PER_HOUR
 
 # Frontier: token counts MEASURED against the real prompt we would have to send
 # (question + 25 candidate misconceptions); prices are Anthropic's published list
-# rates. Accuracy and latency for this row are NOT measured -- we have no API key.
+# rates. Accuracy and latency for this row are NOT measured (no API key configured).
 from transformers import AutoTokenizer
 tk = AutoTokenizer.from_pretrained(str(ART / "bi_encoder"))
 def frontier_prompt(i):
@@ -201,8 +201,8 @@ cost = dict(
                 f"configuration on {args.shipped_threads} vCPU at "
                 f"${VCPU_USD_PER_HOUR}/vCPU-hour. Frontier: prompt length measured on this exact task "
                 f"({mean_in:.0f} input + {mean_out:.0f} output tokens per diagnosis) priced at Anthropic's "
-                f"published list rates. Frontier accuracy and latency were NOT measured -- no API key."),
-    rows=[dict(name=f"Frontier API — {n}", per_1k=money(v),
+                f"published list rates. Frontier accuracy and latency were not measured (no API key configured)."),
+    rows=[dict(name=f"Frontier API: {n}", per_1k=money(v),
                monthly=money(v * vol / 1000), basis="measured tokens x published list price",
                shipped=False) for n, v in sorted(frontier.items(), key=lambda kv: -kv[1])]
          + [dict(name="WhyWrong (shipped, 1 CPU core)", per_1k=f"${ours_per_1k:.5f}",
@@ -237,7 +237,7 @@ for nm, label, params in [(f"biencoder_r1_realonly:{args.split}", "Fine-tuned re
 systems.append(dict(name="Frontier API (few-shot)", params_M=None, map25=None, recall25=None,
                     recall25_unseen=None, top1=None, p50_ms=None,
                     cost_per_1k_usd=cheapest, runs_on="someone's GPU", shipped=False))
-systems.append(row("WhyWrong — shipped (INT8 ONNX)", f"shipped_onnx_full:{args.split}",
+systems.append(row("WhyWrong: shipped (INT8 ONNX)", f"shipped_onnx_full:{args.split}",
                    55 if eng.ce is not None else 33, latency["p50"],
                    round(ours_per_1k, 5), "1 CPU core", shipped=True))
 
@@ -249,7 +249,7 @@ headline = [
          detail=f"vs {get('offtheshelf:bge-small-en-v1.5'):.3f} off-the-shelf", color="var(--good)"),
     dict(key="p50 latency", value=f"{latency['p50']} ms",
          detail="one CPU core, no GPU", color="var(--accent)"),
-    dict(key="cheaper per 1k", value=f"{ratio:,.0f}x" if ratio else "—",
+    dict(key="cheaper per 1k", value=f"{ratio:,.0f}x" if ratio else "N/A",
          detail=f"vs {cheapest_name} list price", color="var(--warn)"),
 ]
 
@@ -262,11 +262,11 @@ payload = dict(
                 f"{manifest['n_misconceptions_never_in_train']:,} misconceptions "
                 f"({100*manifest['n_misconceptions_never_in_train']/manifest['n_misconceptions']:.0f}%) never "
                 f"appear in training, so {manifest['test_unseen_queries']:,} of {manifest['n_test']:,} test "
-                f"queries have a gold label the model has never seen — that is the 'R@25 unseen' column."),
+                f"queries have a gold label the model has never seen (reported in the 'R@25 unseen' column."),
     systems=systems, headline=headline, latency=latency, cost=cost, bundle_mb=bundle_mb,
     footnote=("Every filled cell was measured on the frozen test split above; blank cells say 'not measured' "
               "rather than being estimated. The shipped row is the INT8 ONNX artifact this site serves, "
-              "measured through the same code path as your requests — not the fp32 training checkpoint."))
+              "measured through the same code path as your requests, rather than the fp32 training checkpoint."))
 (ART / "benchmark.json").write_text(json.dumps(payload, indent=2))
 print(f"\nbenchmark.json written  (bundle {bundle_mb} MB, {ratio:,.0f}x cheaper than {cheapest_name})")
 

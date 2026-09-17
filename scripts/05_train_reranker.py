@@ -1,4 +1,4 @@
-"""Stage 2: the heavy cross-encoder teacher -- Qwen2.5-7B + LoRA, scalar score head.
+"""Stage 2: the heavy cross-encoder teacher: Qwen2.5-7B + LoRA, scalar score head.
 
 Trained listwise: each example is one query with its gold misconception plus K hard
 negatives mined by the stage-1 retriever, optimised with softmax cross-entropy over

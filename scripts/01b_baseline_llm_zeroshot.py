@@ -1,7 +1,7 @@
 """Baseline 3: a general instruct LLM reranking stage-1 candidates, with NO task training.
 
 This is the honest local stand-in for "throw a frontier API at it". Same 7B backbone as
-our teacher, same candidate set, same scoring position -- the only difference from
+our teacher, same candidate set, same scoring position; the only difference from
 script 05 is that this model has never seen the task. It answers the question the panel
 will actually ask: how much of our gain came from training rather than from model size?
 

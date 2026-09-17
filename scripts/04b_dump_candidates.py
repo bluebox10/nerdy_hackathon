@@ -1,7 +1,7 @@
 """Dump stage-1 top-K candidates per query for any split.
 
 The reranker trains on the retriever's actual mistakes, so its negatives must be
-the ones stage 1 really ranks highly -- not random misconceptions.
+the ones stage 1 really ranks highly, rather than random misconceptions.
 """
 import argparse, sys
 from pathlib import Path

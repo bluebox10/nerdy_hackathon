@@ -1,4 +1,4 @@
-"""WhyWrong inference engine -- CPU only, no GPU, no LLM, no network call.
+"""WhyWrong inference engine on CPU with no GPU or external network calls.
 
 Pipeline per diagnosis:
   1. bi-encoder (33M, INT8 ONNX) embeds the query                    ~15 ms
@@ -49,7 +49,7 @@ class WhyWrongEngine:
 
         The cross-encoder dominates serving cost: it is a full transformer forward per
         candidate, so cost is linear in rerank_k. Measured on one core it is ~28 ms per
-        candidate, i.e. ~700 ms at k=25 -- which is why both are configurable and why
+        candidate (approximately 700 ms at k=25), which is why both are configurable and why
         scripts/11 sweeps them rather than asserting a single latency number.
         """
         import onnxruntime as ort
@@ -144,7 +144,7 @@ class WhyWrongEngine:
         return d
 
     def neighbours(self, mid: int, k: int = 4) -> list[dict]:
-        """Misconceptions closest in embedding space -- 'what else is she at risk for'."""
+        """Retrieve misconceptions closest in embedding space."""
         i = self.pos.get(int(mid))
         if i is None:
             return []

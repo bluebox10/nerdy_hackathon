@@ -3,7 +3,7 @@
 58% of the 2,587-misconception taxonomy never appears in our training split, so
 supervised contrastive learning has literally nothing to learn for those classes.
 Fix: ask a locally-hosted instruct model to *write* diagnostic questions whose
-distractor embodies each misconception -- especially the ones with zero real
+distractor embodies each misconception, especially the ones with zero real
 examples. Runs offline on our own A100s; never touches the serving path.
 """
 import argparse, json, os, random, re, sys, time
@@ -89,11 +89,11 @@ Hard requirements:
   Do not drift to another topic. If the misconception is about gradients, write about
   gradients; if it is about fractions, write about fractions.
 - "incorrect" must be the answer a student produces *because* they hold this
-  misconception -- mechanically derivable from it. Not a random wrong answer,
+  misconception, mechanically derivable from it. Not a random wrong answer,
   not an arithmetic slip.
 - "correct" must be the genuinely correct answer, and different from "incorrect".
 - Each of the {n} questions must probe the misconception by a DIFFERENT route.
-  Changing only the numbers in one template is a failure -- vary the sub-topic, the
+  Changing only the numbers in one template is a failure; vary the sub-topic, the
   representation (symbolic / word problem / table / "who is correct?" / "which
   statement is true"), and the difficulty (UK Key Stage 2 to GCSE).
 - "why_tempting" must name the exact mechanical step the misconception causes,
@@ -114,7 +114,7 @@ def build_prompt(mid, name):
     real = by_mid.get(int(mid), [])
     if real:
         r = random.choice(real)
-        anchor = ("\nA REAL question that targets the TARGET misconception -- match its rigour, "
+        anchor = ("\nA REAL question that targets the TARGET misconception: match its rigour, "
                   "do NOT copy it:\n" + _fmt_demo(r) + "\n")
     else:
         anchor = ("\nThere are no existing examples for the target misconception. Reason first about "
@@ -180,7 +180,7 @@ def clean(item, mid, name):
 
 def main():
     """HF batched generation. vLLM hangs at NCCL init on this shared box; raw
-    transformers is fast enough -- length-sorted batches of 64 keep one A100
+    transformers is fast enough; length-sorted batches of 64 keep one A100
     saturated, and we shard the misconception list across GPUs by process."""
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM
